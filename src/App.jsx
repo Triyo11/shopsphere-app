@@ -1,11 +1,11 @@
+import CheckoutPage from "./pages/CheckoutPage";
 
 function App() {
-
   return (
     <>
-      <h2>Hello World</h2>
+      <CheckoutPage />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
