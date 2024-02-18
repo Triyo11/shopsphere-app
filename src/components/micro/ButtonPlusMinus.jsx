@@ -1,16 +1,17 @@
 const ButtonPlusMinus = () => {
   return (
     <>
-      <div className="bg-color-accent1 w-[170px] ">
-        <p className="font-bold text-xl m-2">Quantity:</p>
-        <div className="bg-color-primary w-[170px] flex justify-between border-2 border-color-secondary">
-          <button className="font-bold text-xl text-color-light  hover:bg-color-secondary w-16 p-2 border-r-2 border-color-secondary">
+      <div className="w-[170px] text-center">
+        <p className="font-normal text-2xl italic mb-[12px]">Quantity:</p>
+        <div className=" w-[170px] flex justify-between">
+          <button className="font-bold text-xl text-color-light bg-color-primary  hover:bg-color-secondary w-[51px] p-2 rounded-l-xl">
             -
           </button>
-          <span className="font-bold text-xl text-color-light text-center p-2 w-16">
+          <span className="font-bold text-2xl text-color-primary text-center bg-color-accent1 p-2 w-[115px]">
             1
           </span>
-          <button className="font-bold text-xl text-color-light hover:bg-color-secondary w-16 p-2 border-l-2 border-color-secondary">
+          <button className="font-bold text-xl text-color-light bg-color-primary hover:bg-color-secondary w-[51px] p-2 rounded-r-xl">
+
             +
           </button>
         </div>
