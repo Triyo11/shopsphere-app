@@ -11,6 +11,7 @@ const ButtonPlusMinus = () => {
             1
           </span>
           <button className="font-bold text-xl text-color-light bg-color-primary hover:bg-color-secondary w-[51px] p-2 rounded-r-xl">
+
             +
           </button>
         </div>
