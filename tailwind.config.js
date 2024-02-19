@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
-    "./src/**/*.jsx",
+    "src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
@@ -17,6 +17,7 @@ export default {
         accent2: '#FF0065',
         light: '#FFFFFF',
         dark: '#240E1F',
+        transparent: 'transparent',
         black: '#0D0D0D'
       }
     }
