@@ -5,6 +5,7 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import BottonLogin from '../micro/BottonLogin';
 
+
 export default function FormLogin() {
   return (
     <div>
@@ -17,7 +18,7 @@ export default function FormLogin() {
             </div>
         </div>
         <div className='flex justify-start mx-7'>
-            <p className='text-sm text-color-secondary hidden'>email not valid</p>
+            <p className='text-sm text-color-secondary hidden'>email not valid</p>     
         </div>
 
 
