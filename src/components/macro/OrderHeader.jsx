@@ -2,7 +2,7 @@ const OrderHeader = () => {
     return (
       <>
         <div className="flex items-center  mt-[31px] mb-[75px]">
-          <button className="bg-color-primary hover:bg-color-secondary rounded-full ml-[135px]">
+          <button className="bg-color-primary hover:bg-color-secondary rounded-full ml-[30px] md:ml-[135px]">
             <svg
               width="49px"
               height="49px"
@@ -22,7 +22,7 @@ const OrderHeader = () => {
           <h2 className="font-bold text-3xl text-color-primary text-center w-full">
             Order status
           </h2>
-          <div className="w-[49px] mr-[135px]"></div>
+          <div className="w-[49px] mr-[30px] md:mr-[135px]"></div>
         </div>
       </>
     );
