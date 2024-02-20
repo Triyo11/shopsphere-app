@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useContext } from "react";
 import { MyContext } from "../../../utils/myContext";
-import { deleteCartProduct } from "../../../utils/api";
+import { deleteCartProduct } from "../../../utils/cartApiFetch";
 
 const ButtonDelete = ({ item }) => {
   const { setDeletedCart } = useContext(MyContext);

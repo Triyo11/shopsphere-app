@@ -5,12 +5,13 @@ import OrderHeader from "../components/macro/OrderHeader";
 
 const OrderPage = () => {
   return (
-    <>  
-      <Header />
-      <OrderHeader />
-      <OrderCard />
-      <OrderCard />
-      <Footer />
+    <>
+      <div className="flex flex-col min-h-screen">
+        <Header />
+        <OrderHeader />
+        <OrderCard />
+        <Footer />
+      </div>
     </>
   );
 };

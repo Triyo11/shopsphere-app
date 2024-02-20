@@ -1,4 +1,3 @@
-// api.js
 import Cookies from "js-cookie";
 let token = Cookies.get("token");
 

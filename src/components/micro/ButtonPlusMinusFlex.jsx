@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { postCart } from "../../../utils/api";
+import { postCart } from "../../../utils/cartApiFetch";
 import { MyContext } from "../../../utils/myContext";
 
 /* eslint-disable react/prop-types */
