@@ -10,7 +10,7 @@ import Header from "../components/macro/Header";
 import Footer from "../components/macro/Footer";
 
 const CartPage = () => {
-  //ContextAPI
+  //Consume ContextAPI
   const { cartData, setCartData, addCart, deletedCart } = useContext(MyContext);
 
   //Fungsi yg ngatur lama pesan muncul
@@ -26,7 +26,7 @@ const CartPage = () => {
     }
   }, [addCart.message]);
 
-  //Fungsi yang mengtriger agar
+  //Fungsi yang mengtriger getCart api
   useEffect(() => {
     const fetchCart = async () => {
       const data = await getCart();
@@ -37,8 +37,9 @@ const CartPage = () => {
 
   return (
     <>
-      <Header />
       <div className="flex flex-col min-h-screen">
+        <Header />
+
         <CartHeader />
         <div className="flex justify-center items-center pb-4">
           {showMessage && addCart.message && (
@@ -61,8 +62,9 @@ const CartPage = () => {
             {cartData.message}
           </p>
         )}
+
+        <Footer />
       </div>
-      <Footer />
     </>
   );
 };

@@ -17,6 +17,7 @@ function App() {
   const [cartData, setCartData] = useState([]);
   const [addCart, setAddCart] = useState([]);
   const [deletedCart, setDeletedCart] = useState([]);
+  const [orderData, setOrderData] = useState([]);
 
   console.log(cartData.cart);
 
@@ -30,6 +31,8 @@ function App() {
           setAddCart,
           deletedCart,
           setDeletedCart,
+          orderData,
+          setOrderData,
         }}
       >
         <BrowserRouter>
