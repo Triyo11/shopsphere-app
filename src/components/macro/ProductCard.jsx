@@ -6,7 +6,7 @@ const ProductCard = ({ stock }) => {
 
   return (
     <>
-      <div className="bg-color-accent1 flex flex-col md:w-48 w-36 h-full rounded-lg font-poppins">
+      <div className="bg-color-accent1 shadow-2xl flex flex-col md:w-48 w-36 h-full rounded-lg font-poppins">
         <img src="https://placehold.co/600x400" className="w-full h-3/5 rounded-t-lg object-cover"/>
         <div className="md:p-4 p-2">
           <h2 className="font-bold md:text-md text-sm text-color-accent2">Product Name</h2>
