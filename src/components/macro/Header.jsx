@@ -9,7 +9,7 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-color-primary flex justify-between items-center p-4">
+    <header className="bg-color-primary sticky top-0 flex justify-between items-center p-4">
       <div className="flex items-center">
         <h1 className="text-2xl font-bold">
           <span className="text-color-light">Shop</span>
