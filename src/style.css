@@ -4,6 +4,12 @@
 @tailwind components;
 @tailwind utilities;
 
+html body {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
 .glass {
   background: rgba(255, 255, 255, 0.17);
   border-radius: 16px;
