@@ -6,6 +6,7 @@ import CheckoutPage from "./pages/CheckoutPage";
 import OrderPage from "./pages/OrderPage";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import NotFound from "./pages/NotFound";
 import "./style.css";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route path="/cart" element={<CartPage />} />
           <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/order" element={<OrderPage />} />
+          <Route path="/notfound" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </>
