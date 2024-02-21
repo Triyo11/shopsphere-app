@@ -11,6 +11,7 @@ import EditProfile from "./pages/EditProfile";
 import Home from "./pages/Home";
 import ManageProduct from "./pages/ManageProduct";
 import SearchProduct from "./pages/SearchProduct";
+import DetailProduct from "./pages/DetailProduct";
 import "./style.css";
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
           <Route path="/order" element={<OrderPage />} />
           <Route path="/notfound" element={<NotFound />} />
           <Route path="/EditProfile" element={<EditProfile />} />
+          <Route path="/DetailProduct" element={<DetailProduct />} />
         </Routes>
       </BrowserRouter>
     </>

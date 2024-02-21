@@ -1,18 +1,18 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useState } from "react";
+import React, { useRef, useState } from "react"; // Remove duplicate import of useState
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { useRef } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
 const hiUserFontSize = 21;
 
 const Header = () => {
+  const [searchValue, setSearchValue] = useState(""); // Manage search value with state
   const searchRef = useRef();
   const navigate = useNavigate()
 
   const handleSearchProduct = (event) => {
-    const searchKeyword = searchRef.current.value;
+    const searchKeyword = searchValue; // Use searchValue state instead of ref
     if (event.key === "Enter" || event.type === "click") {
       navigate(`/search/${searchKeyword}`);
     }
@@ -33,7 +33,8 @@ const Header = () => {
           <label className="relative">
             <input
               type="text"
-              value={searchRef}
+              value={searchValue} // Use searchValue state
+              onChange={(e) => setSearchValue(e.target.value)} // Update searchValue state
               onKeyDown={handleSearchProduct}
               className="md:w-[50vw] w-[40vw] py-2 px-20 rounded-md pl-2"
             />

@@ -3,12 +3,18 @@ import React, { useState } from "react";
 import Footer from "../components/macro/Footer";
 import Header from "../components/macro/Header";
 import EditProfileHeader from "../components/macro/EditProfileHeader";
+import EditPhotoButton from "../components/micro/EditPhotoButton";
+import OpenStoreButton from "../components/micro/OpenStoreButton";
+import ManageStoreButton from "../components/micro/ManageStoreButton";
 
 const EditProfile = () => {
   // State untuk menyimpan nilai nama, email, dan password
   const [name] = useState("Fahmi Malik");
   const [email] = useState("example@example.com");
   const [password] = useState("********");
+
+  // Status pengguna (seller atau bukan)
+  const isSeller = true; // Ganti dengan status pengguna yang sesuai
 
   return (
     <>
@@ -24,15 +30,8 @@ const EditProfile = () => {
               alt="Foto Profil"
             />
           </div>
-          <button className="mt-4 bg-color-primary hover:bg-color-secondary text-white font-bold py-2 px-4 rounded">
-            Edit Photo
-          </button>
-          <button className="mt-4 bg-color-primary hover:bg-color-secondary text-white font-bold py-2 px-4 rounded">
-            Open Store
-          </button>
-          <button className="mt-4 bg-color-primary hover:bg-color-secondary text-white font-bold py-2 px-4 rounded">
-            Manage Store
-          </button>
+          <EditPhotoButton />
+          {isSeller ? <ManageStoreButton /> : <OpenStoreButton />}
         </div>
 
         {/* Bagian Sebelah Kanan */}
