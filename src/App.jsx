@@ -13,25 +13,53 @@ import ManageProduct from "./pages/ManageProduct";
 import SearchProduct from "./pages/SearchProduct";
 import DetailProduct from "./pages/DetailProduct";
 import "./style.css";
+import { MyContext } from "./../utils/myContext";
+import { useState } from "react";
+import Payment from "./pages/Payment";
 
 function App() {
+  const [cartData, setCartData] = useState([]);
+  const [addCart, setAddCart] = useState([]);
+  const [deletedCart, setDeletedCart] = useState([]);
+  const [orderData, setOrderData] = useState([]);
+
+  console.log(cartData.cart);
+
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/manage-product" element={<ManageProduct />} />
-          <Route path="/search/:keyword" element={<SearchProduct keyword={useParams.keyword}/>} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/cart" element={<CartPage />} />
-          <Route path="/checkout" element={<CheckoutPage />} />
-          <Route path="/order" element={<OrderPage />} />
-          <Route path="/notfound" element={<NotFound />} />
-          <Route path="/EditProfile" element={<EditProfile />} />
-          <Route path="/DetailProduct" element={<DetailProduct />} />
-        </Routes>
-      </BrowserRouter>
+      <MyContext.Provider
+        value={{
+          cartData,
+          setCartData,
+          addCart,
+          setAddCart,
+          deletedCart,
+          setDeletedCart,
+          orderData,
+          setOrderData,
+        }}
+      >
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/manage-product" element={<ManageProduct />} />
+            <Route
+              path="/search/:keyword"
+              element={<SearchProduct keyword={useParams.keyword} />}
+            />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/cart" element={<CartPage />} />
+            <Route path="/checkout" element={<CheckoutPage />} />
+            <Route path="/order" element={<OrderPage />} />
+            <Route path="/payment" element={<Payment />} />
+            <Route path="/notfound" element={<NotFound />} />
+            <Route path="/EditProfile" element={<EditProfile />} />
+            <Route path="/DetailProduct" element={<DetailProduct />} />
+            <Route path="/*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </MyContext.Provider>
     </>
   );
 }
