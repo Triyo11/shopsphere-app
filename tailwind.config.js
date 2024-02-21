@@ -17,7 +17,8 @@ export default {
         accent2: '#FF0065',
         light: '#FFFFFF',
         dark: '#240E1F',
-        transparent: 'transparent'
+        transparent: 'transparent',
+        black: '#0D0D0D'
       }
     }
   },
