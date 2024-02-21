@@ -1,13 +1,11 @@
 // eslint-disable-next-line no-unused-vars
 
 import { useRef } from "react";
-import { useNavigate } from "react-router-dom";
-// import { unstable_HistoryRouter } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 
 const Header = () => {
   const searchRef = useRef();
-  // const history = unstable_HistoryRouter();
   const navigate = useNavigate()
 
   const handleSearchProduct = (event) => {
@@ -42,7 +40,7 @@ const Header = () => {
         </label>
       </div>
       <div>
-        <button className="text-2xl text-color-light font-bold py-2 px-4 rounded-md">Login</button>
+        <NavLink to={"/login"} className="text-2xl text-color-light font-bold py-2 px-4 rounded-md">Login</NavLink>
       </div>
     </header>
   );

@@ -7,7 +7,6 @@ import Footer from "../components/macro/Footer";
 const SearchProduct = () => {
   const location = useLocation();
   const keyword = location.pathname.split("/").pop();
-  // const searchProduct = await getSearchProduct("search", `q=${keyword}`);
 
   return (
     <>
