@@ -7,9 +7,11 @@ import OrderPage from "./pages/OrderPage";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
+import EditProfile from "./pages/EditProfile";
 import Home from "./pages/Home";
 import ManageProduct from "./pages/ManageProduct";
 import SearchProduct from "./pages/SearchProduct";
+import DetailProduct from "./pages/DetailProduct";
 import "./style.css";
 
 function App() {
@@ -26,6 +28,8 @@ function App() {
           <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/order" element={<OrderPage />} />
           <Route path="/notfound" element={<NotFound />} />
+          <Route path="/EditProfile" element={<EditProfile />} />
+          <Route path="/DetailProduct" element={<DetailProduct />} />
         </Routes>
       </BrowserRouter>
     </>
