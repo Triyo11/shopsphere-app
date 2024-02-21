@@ -3,6 +3,8 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { IoArrowBackCircle } from "react-icons/io5";
+
+import DescriptionPayment from '../components/macro/DescriptionPayment';
 import Header from "../components/macro/Header";
 import Footer from "../components/macro/Footer";
 import {
@@ -10,6 +12,7 @@ import {
   getCityOngkir,
   getCostOngkir,
 } from "../../utils/rajaongkirApiFetch";
+
 
 export default function Payment() {
   const [provinceOngkirData, setProvinceOngkirData] = useState([]);
@@ -92,7 +95,17 @@ export default function Payment() {
             </Link>
           </div>
 
-          <h1 className="text-4xl justify-center text-center">Payment</h1>
+
+            <div className='flex w-full justify-around max-sm:mb-2 md:mb-0 '>
+                <div className='max-sm:mt-2'>
+                <Link to='/' type='button' className=' border-color-primary border-2 text-color-light text-md rounded-2xl my-2 px-2 py-2 max-sm:px-1 max-sm:py-1 max-sm:text-sm hover:border-color-secondary  hover:text-color-light'>
+                    <IoArrowBackCircle className='text-4xl fill-color-primary hover:fill-color-secondary max-sm:text-2xl'/>
+                </Link>
+                </div>
+                
+              
+                <h1 className='text-4xl justify-center text-center max-sm:text-2xl max-sm:mt-3'>Payment</h1>
+
 
           <div></div>
         </div>
@@ -120,6 +133,11 @@ export default function Payment() {
                   ))}
                 </select>
               </div>
+
+            </div>
+            
+        <DescriptionPayment/>
+       
 
               <div className="py-3">
                 <label htmlFor="" className="text-2xl py-3">
@@ -210,7 +228,6 @@ export default function Payment() {
       </div>
       <div>
         <Footer />
-      </div>
     </div>
   );
 }
