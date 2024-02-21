@@ -4,6 +4,12 @@
 @tailwind components;
 @tailwind utilities;
 
+html body {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
 .glass {
   background: rgba(255, 255, 255, 0.17);
   border-radius: 16px;
@@ -11,4 +17,14 @@
   backdrop-filter: blur(5.7px);
   -webkit-backdrop-filter: blur(5.7px);
   border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.menu-category {
+  @media screen and (min-width: 768px) {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-left: 240px;
+    margin-right: 240px;
+  }
 }
