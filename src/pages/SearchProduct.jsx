@@ -1,11 +1,14 @@
-import { NavLink } from "react-router-dom"
-import Header from "../components/macro/Header"
-import Footer from "../components/macro/Footer"
-import { FaArrowLeft } from "react-icons/fa6";
-import { FaPlus } from "react-icons/fa6";
+import { NavLink, useLocation } from "react-router-dom";
+import Header from "../components/macro/Header";
+import { FaArrowLeft, FaPlus } from "react-icons/fa6";
 import ManageProductCard from "../components/macro/ManageProductCard";
+import Footer from "../components/macro/Footer";
 
-const ManageProduct = () => {
+const SearchProduct = () => {
+  const location = useLocation();
+  const keyword = location.pathname.split("/").pop();
+  // const searchProduct = await getSearchProduct("search", `q=${keyword}`);
+
   return (
     <>
       <Header />
@@ -14,8 +17,8 @@ const ManageProduct = () => {
           <NavLink to={"/"}>
             <FaArrowLeft className="text-5xl fill-color-light bg-color-primary hover:bg-color-secondary rounded-full p-2" />
           </NavLink>
-          <h2 className="font-bold text-3xl text-color-primary">Manage My Product</h2>
-          <NavLink to={"/"}>
+          <h2 className="font-bold text-3xl text-color-primary">Search for `{keyword} ...`</h2>
+          <NavLink to={"/"} className="invisible">
             <FaPlus className="text-5xl fill-color-light bg-color-primary hover:bg-color-secondary rounded-full p-2" />
           </NavLink>
         </div>
@@ -35,4 +38,4 @@ const ManageProduct = () => {
   )
 }
 
-export default ManageProduct
+export default SearchProduct
