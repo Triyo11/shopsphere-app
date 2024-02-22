@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes, useParams } from "react-router-dom";
 import CartPage from "./pages/CartPage";
 import CheckoutPage from "./pages/CheckoutPage";
@@ -14,7 +14,6 @@ import SearchProduct from "./pages/SearchProduct";
 import DetailProduct from "./pages/DetailProduct";
 import "./style.css";
 import { MyContext } from "./../utils/myContext";
-import { useState } from "react";
 import Payment from "./pages/Payment";
 
 function App() {
@@ -22,8 +21,6 @@ function App() {
   const [addCart, setAddCart] = useState([]);
   const [deletedCart, setDeletedCart] = useState([]);
   const [orderData, setOrderData] = useState([]);
-
-  console.log(cartData.cart);
 
   return (
     <>
@@ -37,6 +34,8 @@ function App() {
           setDeletedCart,
           orderData,
           setOrderData,
+          // userToken,
+          // setUserToken,
         }}
       >
         <BrowserRouter>
