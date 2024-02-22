@@ -11,12 +11,14 @@ const shadowStyle = {
   borderRadius: '10px',
   padding: '20px',
   margin: 'auto',
-  width: '70%', // Memastikan bagian kanan tetap responsif
+  width: '90%', // Memastikan bagian kanan tetap responsif
 };
 
 const hoverStyle = {
   transform: 'translateY(-10px)',
 };
+
+const isMediumScreen = window.matchMedia("(min-width: 768px)").matches;
 
 const EditProfile = () => {
   // State untuk menyimpan nilai nama, email, dan password
@@ -76,7 +78,7 @@ const EditProfile = () => {
       <div className="font-poppins md:flex flex-row justify-center items-start w-full" style={{ ...shadowStyle, ...hoverStyle }}>
         {/* Bagian Sebelah Kiri */}
         <div className="flex flex-col items-center justify-start pb-20">
-          <div className="h-56 w-56 rounded-full overflow-hidden mt-10">
+          <div className={`${isMediumScreen ? "h-40 w-40" : "h-36 w-36 mb-5"} rounded-full overflow-hidden md:mt-10 mt-5`}>
             <img
               className="h-full w-full object-cover"
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXetqBk12IiVmLp-t1PqjvmL74ULCO-6mPVYC0Jy5CsxvJ7JxcKRSQTP4WGk9VbLLJIAg&usqp=CAU"
@@ -92,7 +94,7 @@ const EditProfile = () => {
         {/* Bagian Sebelah Kanan */}
         <div className="items-start p-2 md:pl-20">
           <div className="flex justify-between items-center mb-4 md:mt-10">
-            <div>
+            <div className="flex md:flex-row md:gap-3 flex-col">
               <span className="font-bold text-lg pr-[30px]">Name </span>
               {isNameEdit ? (
                 <input
@@ -122,7 +124,7 @@ const EditProfile = () => {
             )}
           </div>
           <div className="flex justify-between items-center mb-4">
-            <div>
+            <div className="flex md:flex-row md:gap-3 flex-col">
               <span className="font-bold text-lg pr-[34px]">Email </span>
               {isEmailEdit ? (
                 <input
@@ -152,7 +154,7 @@ const EditProfile = () => {
             )}
           </div>
           <div className="flex justify-between items-center mb-4 ">
-            <div>
+            <div className="flex md:flex-row md:gap-3 flex-col">
               <span className="font-bold text-lg pr-[1px]">Password </span>
               <input
                 type={isPasswordEdit ? "text" : "password"}
