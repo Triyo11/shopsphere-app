@@ -7,7 +7,6 @@ import Footer from "../components/macro/Footer";
 const SearchProduct = () => {
   const location = useLocation();
   const keyword = location.pathname.split("/").pop();
-  // const searchProduct = await getSearchProduct("search", `q=${keyword}`);
 
   return (
     <>
@@ -17,7 +16,7 @@ const SearchProduct = () => {
           <NavLink to={"/"}>
             <FaArrowLeft className="text-5xl fill-color-light bg-color-primary hover:bg-color-secondary rounded-full p-2" />
           </NavLink>
-          <h2 className="font-bold text-3xl text-color-primary">Search for `{keyword} ...`</h2>
+          <h2 className="font-bold text-3xl text-color-primary">Search for &quot;{keyword} ...&quot;</h2>
           <NavLink to={"/"} className="invisible">
             <FaPlus className="text-5xl fill-color-light bg-color-primary hover:bg-color-secondary rounded-full p-2" />
           </NavLink>

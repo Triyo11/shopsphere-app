@@ -20,6 +20,7 @@
     "@react-icons/all-files": "^4.1.0",
     "dotenv": "^16.4.4",
     "express": "^4.18.2",
+    "js-cookie": "^3.0.5",
     "lottie-react": "^2.4.0",
     "mysql2": "^3.9.1",
     "react": "^18.2.0",
