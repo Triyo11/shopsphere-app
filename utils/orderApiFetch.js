@@ -1,10 +1,10 @@
 import Cookies from "js-cookie";
 let token = Cookies.get("token");
-const url_api = import.meta.env.VITE_API_URL;
+const url_app = import.meta.env.VITE_APP_URL;
 
 export const getOrder = async (orderItem) => {
   try {
-    const response = await fetch(`${url_api}/api/order`, {
+    const response = await fetch(`${url_app}/api/order`, {
       method: "GET",
       headers: {
         Authorization: token,

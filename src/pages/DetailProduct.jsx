@@ -4,7 +4,7 @@ import Footer from "../components/macro/Footer";
 import Header from "../components/macro/Header";
 import DetailProductHeader from "../components/macro/DetailproductHeader";
 import DetailCard from "../components/macro/DetailCard";
-import DetailContinueCard from "../components/macro/DetailContinueCard";
+import DescriptionCard from "../components/macro/DescriptionCard";
 
 const DetailProduct = () => {
   return (
@@ -12,7 +12,7 @@ const DetailProduct = () => {
         <Header />
         <DetailProductHeader />
         <DetailCard />
-        <DetailContinueCard />
+        <DescriptionCard />
         <Footer />
     </>
   );
