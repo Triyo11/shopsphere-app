@@ -9,7 +9,7 @@ import ManageStoreButton from "../components/micro/ManageStoreButton";
 
 const EditProfile = () => {
   // State untuk menyimpan nilai nama, email, dan password
-  const [name] = useState("Fahmi Malik");
+  const [name] = useState("User");
   const [email] = useState("example@example.com");
   const [password] = useState("********");
 
