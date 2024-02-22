@@ -14,15 +14,15 @@ const EditProfile = () => {
   const [password] = useState("********");
 
   // Status pengguna (seller atau bukan)
-  const isSeller = true; // Ganti dengan status pengguna yang sesuai
+  const isSeller = false; // Ganti dengan status pengguna yang sesuai
 
   return (
     <>
       <Header />
       <EditProfileHeader />
-      <div className="flex flex-row justify-center items-start w-full">
+      <div className="md:flex flex-row justify-center items-start w-full">
         {/* Bagian Sebelah Kiri */}
-        <div className="flex flex-col items-center justify-start w-1/2 pb-20">
+        <div className="flex flex-col items-center justify-start pb-20">
           <div className="h-56 w-56 rounded-full overflow-hidden">
             <img
               className="h-full w-full object-cover"
@@ -35,30 +35,37 @@ const EditProfile = () => {
         </div>
 
         {/* Bagian Sebelah Kanan */}
-        <div className="flex flex-col items-start justify-start w-1/2 p-2 align-self-start">
-          <div className="flex items-center mb-4">
-            <span className="font-bold text-lg">Name </span>
-            <span className="ml-2">{name}</span>
-            <button className="ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        <div className="items-start p-2 md:pl-20">
+          <div className="flex justify-between items-center mb-4">
+            <div>
+            <span className="font-bold text-lg pr-[30px]">Name </span>
+            <span className="">{name}</span>
+            </div>
+            <button className="ml-2 font-bold py-2 px-4 rounded">
               Edit
             </button>
           </div>
-          <div className="flex items-center mb-4">
-            <span className="font-bold text-lg">Email </span>
-            <span className="ml-2">{email}</span>
-            <button className="ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          <div className="flex justify-between items-center mb-4">
+            <div>
+            <span className="font-bold text-lg pr-[34px]">Email </span>
+            <span className="">{email}</span>
+            </div>
+            <button className="ml-2 font-bold py-2 px-4 rounded">
               Edit
             </button>
           </div>
-          <div className="flex items-center mb-4">
-            <span className="font-bold text-lg">Password </span>
-            <span className="ml-2">{password}</span>
-            <button className="ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          <div className="flex justify-between items-center mb-4">
+            <div>
+            <span className="font-bold text-lg pr-[1px]">Password </span>
+            <span className="">{password}</span>
+            </div>
+            <button className="ml-2 font-bold py-2 px-4 rounded">
               Edit
             </button>
           </div>
         </div>
       </div>
+  
       <Footer />
     </>
   );
