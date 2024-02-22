@@ -3,6 +3,8 @@ import React, { useState } from 'react'
 import { MdEmail } from "react-icons/md"
 import { RiLockPasswordFill } from "react-icons/ri";
 import { Link, useNavigate } from "react-router-dom";
+import { useContext } from 'react';
+import { MyContext } from '../../../utils/myContext.js';
 // import BottonLogin from '../micro/BottonLogin';
 
 const exampleSuccessResponse = {
@@ -10,7 +12,7 @@ const exampleSuccessResponse = {
     "user": {
         "id": 1,
         "email": "bWQpP@example.com",
-        "name": "John",
+        "name": "Ariel",
     }
 }
 
@@ -32,9 +34,14 @@ const exampleEmailPasswordFailedResponse = {
         "password": "Password is required"
     }
 }
+
+
 export default function FormLogin() {
+    const {setUserData} = useContext(MyContext)
     const navigate = useNavigate();
-    const [loginResponse, setLoginResponse] = useState(exampleSuccessResponse);
+    const [loginResponse] = useState(exampleSuccessResponse);
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     // const [loginResponse, setLoginResponse] = useState(exampleEmailFailedResponse);
     // const [loginResponse, setLoginResponse] = useState(examplePasswordFailedResponse);
     // const [loginResponse, setLoginResponse] = useState(exampleEmailPasswordFailedResponse);
@@ -43,21 +50,22 @@ export default function FormLogin() {
 
     const handleLogin = (e) => {
         e.preventDefault()
-        // const email = e.target.email.value;
-        // const password = e.target.password.value;
+
+        console.log(email, password);
 
         // 1. post ke database untuk login dengan membawa email dan password
         // 2. setLoginResponse dengan response yang dikirimkan oleh API
         if (loginResponse.user) {
             navigate('/');
+            setUserData(loginResponse);
         }
 
-        if (loginResponse.error.email) {
+        if (loginResponse.error?.email) {
             setIsEmailWrong(true);
             console.log(loginResponse.error);
         } 
         
-        if (loginResponse.error.password) {
+        if (loginResponse.error?.password) {
             setIsPasswordWrong(true);
             console.log(loginResponse.error);
         }
@@ -71,7 +79,7 @@ export default function FormLogin() {
         <form className="my-2 mx-2 py-3" onSubmit={handleLogin}>
 
             <div className="flex border-b-color-light border-b-2 mx-5 my-4 py-1 px-2">
-                <input type="email" name='email' className="w-10/12 bg-color-transparent outline-none placeholder-color-light text-color-light  " placeholder="Your email address" required/>
+                <input type="email" name='email' onChange={(e) => setEmail(e.target.value)} className="w-10/12 bg-color-transparent outline-none placeholder-color-light text-color-light  " placeholder="Your email address" required/>
                 <div className="w-2/12 flex items-center justify-center">
                     <MdEmail className="fill-color-light text-xl"/>
                 </div>
@@ -82,7 +90,7 @@ export default function FormLogin() {
 
 
             <div className="flex border-b-color-light border-b-2 mx-5 my-4 py-1 px-2">
-                <input type="password" name='password' className="w-10/12 bg-color-transparent outline-none placeholder-color-light text-color-light" placeholder="Your password" required/>
+                <input type="password" name='password' onChange={(e) => setPassword(e.target.value)} className="w-10/12 bg-color-transparent outline-none placeholder-color-light text-color-light" placeholder="Your password" required/>
                 <div className="w-2/12 flex items-center justify-center">
                     <RiLockPasswordFill className="fill-color-light text-xl "/>
                 </div>

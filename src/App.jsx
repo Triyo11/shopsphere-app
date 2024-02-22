@@ -22,6 +22,7 @@ function App() {
   const [addCart, setAddCart] = useState([]);
   const [deletedCart, setDeletedCart] = useState([]);
   const [orderData, setOrderData] = useState([]);
+  const [userData, setUserData] = useState([]);
 
   console.log(cartData.cart);
 
@@ -29,6 +30,8 @@ function App() {
     <>
       <MyContext.Provider
         value={{
+          userData,
+          setUserData,
           cartData,
           setCartData,
           addCart,
@@ -54,8 +57,8 @@ function App() {
             <Route path="/order" element={<OrderPage />} />
             <Route path="/payment" element={<Payment />} />
             <Route path="/notfound" element={<NotFound />} />
-            <Route path="/EditProfile" element={<EditProfile />} />
-            <Route path="/DetailProduct" element={<DetailProduct />} />
+            <Route path="/edit-profile" element={<EditProfile />} />
+            <Route path="/detail-product" element={<DetailProduct />} />
             <Route path="/*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
