@@ -21,6 +21,7 @@ function App() {
   const [addCart, setAddCart] = useState([]);
   const [deletedCart, setDeletedCart] = useState([]);
   const [orderData, setOrderData] = useState([]);
+  const [checkedItems, setCheckedItems] = useState([]);
 
   return (
     <>
@@ -34,8 +35,8 @@ function App() {
           setDeletedCart,
           orderData,
           setOrderData,
-          // userToken,
-          // setUserToken,
+          checkedItems,
+          setCheckedItems,
         }}
       >
         <BrowserRouter>
