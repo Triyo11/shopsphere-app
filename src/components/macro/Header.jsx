@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // eslint-disable-next-line no-unused-vars
 import React, { useRef, useState, useContext } from "react"; // Remove duplicate import of useState
 import { NavLink, useNavigate } from "react-router-dom";
