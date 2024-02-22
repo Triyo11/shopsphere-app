@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // eslint-disable-next-line no-unused-vars
 import React, { useRef, useState } from "react"; // Remove duplicate import of useState
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
