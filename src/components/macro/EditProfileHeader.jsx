@@ -1,7 +1,7 @@
 const CartHeader = () => {
     return (
       <>
-        <div className="flex items-center  mt-[31px] mb-[75px]">
+        <div className="flex items-center  mt-[31px] mb-[50px]">
           <button className="bg-color-primary hover:bg-color-secondary rounded-full ml-[135px]">
             <svg
               width="49px"
