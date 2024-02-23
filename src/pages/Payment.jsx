@@ -6,6 +6,7 @@ import { IoArrowBackCircle } from "react-icons/io5";
 import Header from "../components/macro/Header";
 import Footer from "../components/macro/Footer";
 import ProcessPayment from "../components/macro/ProcessPayment";
+
 import {
   getProvinceOngkir,
   getCityOngkir,
@@ -93,16 +94,23 @@ export default function Payment() {
             </Link>
           </div>
 
-          <h1 className="text-4xl justify-center text-center max-sm:text-2xl max-sm:mt-3 md:mt-3 lg:mb-3">Payment</h1>
+          <h1 className="text-4xl justify-center text-center max-sm:text-2xl max-sm:mt-3 md:mt-3 lg:mb-3">
+            Payment
+          </h1>
 
           <div></div>
         </div>
 
-        <div className='w-10/12 px-14 py-5 glass flex justify-between gap-1 mx-24 mb-24  max-sm:block max-sm:pl-2 max-sm:pr-2 max-sm:mx-10 max-sm:w-11/12 max-sm:py-2 max-sm:mb-32
+        <div
+          className="w-10/12 px-14 py-5 glass flex justify-between gap-1 mx-24 mb-24  max-sm:block max-sm:pl-2 max-sm:pr-2 max-sm:mx-10 max-sm:w-11/12 max-sm:py-2 max-sm:mb-32
         md:mt-2 md:py-1 md:w-11/12 md:block md:mb-40 lg:flex 
-        '>          
-       <div className='w-11/12 my-3 ml-14 mr-4  max-sm:my-0 max-sm:w-full max-sm:mr-0  max-sm:ml-0 max-sm:py-2 md:w-full md:mr-0 md:ml-0 '>
-            <form action="" className="inline-block py-4 max-sm:w-full  md:w-full lg:w-11/12">
+        "
+        >
+          <div className="w-11/12 my-3 ml-14 mr-4  max-sm:my-0 max-sm:w-full max-sm:mr-0  max-sm:ml-0 max-sm:py-2 md:w-full md:mr-0 md:ml-0 ">
+            <form
+              action=""
+              className="inline-block py-4 max-sm:w-full  md:w-full lg:w-11/12"
+            >
               <div className="py-3 max-sm:w-full md:w-full lg:w-full">
                 <label htmlFor="" className="text-2xl py-3">
                   Province
@@ -185,18 +193,20 @@ export default function Payment() {
             </form>
           </div>
 
-          <div className='w-11/12 my-14 flex justify-between mx-8  max-sm:my-4 max-sm:w-full max-sm:py-2 max-sm:mx-1 md:w-full  lg:w-full '>
+          <div className="w-11/12 my-14 flex justify-between mx-8  max-sm:my-4 max-sm:w-full max-sm:py-2 max-sm:mx-1 md:w-full  lg:w-full ">
             <div className="text-2xl max-sm:text-sm w-full md:w-full md:text-2xl lg:w-full ">
               <p className="text-center text-sm mb-5">Description</p>
-              <div className='w-10/15 flex justify-between gap-24  mb-5 max-sm:gap-2 max-sm:w-full md:w-full lg:w-full'>
+              <div className="w-10/15 flex justify-between gap-24  mb-5 max-sm:gap-2 max-sm:w-full md:w-full lg:w-full">
                 <div>Sub Total:</div>
                 <div className="px-20 max-sm:px-5 lg:px-3">Rp {subtotal}</div>
               </div>
-              <div className='w-10/15 flex justify-between gap-24  mb-3 max-sm:gap-2 max-sm:w-full md:w-full lg:w-full'>
+              <div className="w-10/15 flex justify-between gap-24  mb-3 max-sm:gap-2 max-sm:w-full md:w-full lg:w-full">
                 <div>Shipping Cost:</div>
-                <div className="px-20 max-sm:px-5 lg:px-3">Rp {selectedService}</div>
+                <div className="px-20 max-sm:px-5 lg:px-3">
+                  Rp {selectedService}
+                </div>
               </div>
-              <div className='border-b-color-secondary border-b-4 mb-3 max-sm:gap-2 max-sm:w-full md:w-full'></div>
+              <div className="border-b-color-secondary border-b-4 mb-3 max-sm:gap-2 max-sm:w-full md:w-full"></div>
               <div className="w-10/15 flex justify-between gap-24 ">
                 <div className="text-3xl max-sm:text-2xl">Total:</div>
                 <div className="px-20 max-sm:px-5 lg:px-3">Rp {total}</div>
@@ -204,6 +214,7 @@ export default function Payment() {
 
               <div className="flex justify-center mt-3">
                     <ProcessPayment/>
+
               </div>
             </div>
           </div>

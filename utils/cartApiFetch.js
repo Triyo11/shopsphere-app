@@ -1,11 +1,11 @@
 import Cookies from "js-cookie";
 let token = Cookies.get("token");
 
-const url_api = import.meta.env.VITE_API_URL;
+const url_app = import.meta.env.VITE_APP_URL;
 
 export const getCart = async () => {
   try {
-    const response = await fetch(`${url_api}/api/cart`, {
+    const response = await fetch(`${url_app}/api/cart`, {
       method: "GET",
       headers: {
         Authorization: token,
@@ -22,7 +22,7 @@ export const getCart = async () => {
 
 export const postCart = async (cartItem) => {
   try {
-    const response = await fetch(`${url_api}/api/cart`, {
+    const response = await fetch(`${url_app}/api/cart`, {
       method: "POST",
       headers: {
         Authorization: token,
@@ -40,7 +40,7 @@ export const postCart = async (cartItem) => {
 
 export const deleteCartProduct = async (productId) => {
   try {
-    const response = await fetch(`${url_api}/api/cart/${productId}`, {
+    const response = await fetch(`${url_app}/api/cart/${productId}`, {
       method: "DELETE",
       headers: {
         Authorization: token,

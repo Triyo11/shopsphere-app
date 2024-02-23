@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes, useParams } from "react-router-dom";
 import CartPage from "./pages/CartPage";
 import CheckoutPage from "./pages/CheckoutPage";
@@ -14,7 +14,6 @@ import SearchProduct from "./pages/SearchProduct";
 import DetailProduct from "./pages/DetailProduct";
 import "./style.css";
 import { MyContext } from "./../utils/myContext";
-import { useState } from "react";
 import Payment from "./pages/Payment";
 import PaymentSuccess from "./components/macro/PaymentSuccess";
 
@@ -23,13 +22,14 @@ function App() {
   const [addCart, setAddCart] = useState([]);
   const [deletedCart, setDeletedCart] = useState([]);
   const [orderData, setOrderData] = useState([]);
-
-  console.log(cartData.cart);
+  const [userData, setUserData] = useState([]);
 
   return (
     <>
       <MyContext.Provider
         value={{
+          userData,
+          setUserData,
           cartData,
           setCartData,
           addCart,
@@ -38,6 +38,8 @@ function App() {
           setDeletedCart,
           orderData,
           setOrderData,
+          // userToken,
+          // setUserToken,
         }}
       >
         <BrowserRouter>
@@ -55,8 +57,8 @@ function App() {
             <Route path="/order" element={<OrderPage />} />
             <Route path="/payment" element={<Payment />} />
             <Route path="/notfound" element={<NotFound />} />
-            <Route path="/EditProfile" element={<EditProfile />} />
-            <Route path="/DetailProduct" element={<DetailProduct />} />
+            <Route path="/edit-profile" element={<EditProfile />} />
+            <Route path="/detail-product" element={<DetailProduct />} />
             <Route path="/*" element={<NotFound />} />
 
             <Route path="/payment_success" element={<PaymentSuccess />} />

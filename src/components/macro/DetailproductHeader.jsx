@@ -1,7 +1,7 @@
 const DetailProductHeader = () => {
     return (
       <>
-        <div className="flex items-center  mt-[31px] mb-[20px]">
+        <div className="flex items-center  mt-[25px] mb-[25px]">
           <button className="bg-color-primary hover:bg-color-secondary rounded-full ml-[135px]">
             <svg
               width="49px"

@@ -21,10 +21,10 @@ const OrderPage = () => {
   }, []);
 
   return (
-    <>
-      <div className="flex flex-col min-h-screen">
-        <Header />
-        <OrderHeader />
+    <div className="flex flex-col min-h-screen">
+      <Header />
+      <OrderHeader />
+      <div className="flex-grow">
         {orderData.orders ? (
           <>
             {orderData.orders.map((orders, index) => (
@@ -36,10 +36,9 @@ const OrderPage = () => {
             {orderData.message}
           </p>
         )}
-
-        <Footer />
       </div>
-    </>
+      <Footer />
+    </div>
   );
 };
 export default OrderPage;
