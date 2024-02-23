@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className="bg-color-primary text-color-light p-4 text-center font-bold mt-10">
       <p>©️ Codemasters.id 2024</p>
-      <p>created with ❤️ by 5-stars</p>
+      <p>Coded with ❤️ by 5-STARS</p>
     </footer>
   );
 };

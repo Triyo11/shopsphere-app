@@ -4,8 +4,6 @@ import Footer from "../components/macro/Footer";
 import Header from "../components/macro/Header";
 import EditProfileHeader from "../components/macro/EditProfileHeader";
 import EditPhotoButton from "../components/micro/EditPhotoButton";
-import OpenStoreButton from "../components/micro/OpenStoreButton";
-import ManageStoreButton from "../components/micro/ManageStoreButton";
 
 const shadowStyle = {
   transition: 'transform 0.5s ease',
@@ -13,18 +11,20 @@ const shadowStyle = {
   borderRadius: '10px',
   padding: '20px',
   margin: 'auto',
-  width: '70%', // Memastikan bagian kanan tetap responsif
+  width: '90%', // Memastikan bagian kanan tetap responsif
 };
 
 const hoverStyle = {
   transform: 'translateY(-10px)',
 };
 
+const isMediumScreen = window.matchMedia("(min-width: 768px)").matches;
+
 const EditProfile = () => {
   // State untuk menyimpan nilai nama, email, dan password
   const [name, setName] = useState("User");
   const [email, setEmail] = useState("example@example.com");
-  const [password, setPassword] = useState("********");
+  const [password, setPassword] = useState("password");
 
   // State untuk menyimpan status mode edit
   const [isNameEdit, setIsNameEdit] = useState(false);
@@ -75,10 +75,10 @@ const EditProfile = () => {
     <>
       <Header />
       <EditProfileHeader />
-      <div className="md:flex flex-row justify-center items-start w-full" style={{ ...shadowStyle, ...hoverStyle }}>
+      <div className="font-poppins md:flex flex-row justify-center items-start w-full" style={{ ...shadowStyle, ...hoverStyle }}>
         {/* Bagian Sebelah Kiri */}
         <div className="flex flex-col items-center justify-start pb-20">
-          <div className="h-56 w-56 rounded-full overflow-hidden mt-10">
+          <div className={`${isMediumScreen ? "h-40 w-40" : "h-36 w-36 mb-5"} rounded-full overflow-hidden md:mt-10 mt-5`}>
             <img
               className="h-full w-full object-cover"
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXetqBk12IiVmLp-t1PqjvmL74ULCO-6mPVYC0Jy5CsxvJ7JxcKRSQTP4WGk9VbLLJIAg&usqp=CAU"
@@ -86,13 +86,15 @@ const EditProfile = () => {
             />
           </div>
           <EditPhotoButton />
-          {isSeller ? <ManageStoreButton /> : <OpenStoreButton />}
+          <button className="mt-4 bg-color-primary hover:bg-color-secondary text-color-light font-bold py-2 px-4 rounded">
+            {isSeller ? "Manage Store" : "Open Store"}
+          </button>
         </div>
 
         {/* Bagian Sebelah Kanan */}
         <div className="items-start p-2 md:pl-20">
           <div className="flex justify-between items-center mb-4 md:mt-10">
-            <div>
+            <div className="flex md:flex-row md:gap-3 flex-col">
               <span className="font-bold text-lg pr-[30px]">Name </span>
               {isNameEdit ? (
                 <input
@@ -122,7 +124,7 @@ const EditProfile = () => {
             )}
           </div>
           <div className="flex justify-between items-center mb-4">
-            <div>
+            <div className="flex md:flex-row md:gap-3 flex-col">
               <span className="font-bold text-lg pr-[34px]">Email </span>
               {isEmailEdit ? (
                 <input
@@ -152,18 +154,14 @@ const EditProfile = () => {
             )}
           </div>
           <div className="flex justify-between items-center mb-4 ">
-            <div>
+            <div className="flex md:flex-row md:gap-3 flex-col">
               <span className="font-bold text-lg pr-[1px]">Password </span>
-              {isPasswordEdit ? (
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  style={{ border: "1px solid #ccc", borderRadius: "5px", padding: "5px" }} // Menambahkan border dan gaya lainnya saat mode edit aktif
-                />
-              ) : (
-                <span>{password}</span>
-              )}
+              <input
+                type={isPasswordEdit ? "text" : "password"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                style={isPasswordEdit ? { border: "1px solid #ccc", borderRadius: "5px", padding: "5px" } : null} // Menambahkan border dan gaya lainnya saat mode edit aktif
+              />
             </div>
             {isPasswordEdit ? (
               <button

@@ -7,7 +7,6 @@ import Logo from "../components/micro/Logo";
 
 export default function Login(){
     return(
-        
         <div className="font-poppins w-full h-screen flex flex-col items-center justify-center tracking-wider bg-color-primary">
             <Logo/>
             <FormLogin />

@@ -47,7 +47,7 @@ const Home = () => {
     return (
       <>
         <Header />
-        <div className="bg-color-light flex flex-col items-center w-full max-h-max pt-3">
+        <div className="bg-color-light flex flex-col items-center w-full max-h-max pt-8">
           <Menu as="div" className="relative inline-block text-center">
             <div>
               <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
