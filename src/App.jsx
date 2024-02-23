@@ -16,6 +16,7 @@ import "./style.css";
 import { MyContext } from "./../utils/myContext";
 import { useState } from "react";
 import Payment from "./pages/Payment";
+import PaymentSuccess from "./components/macro/PaymentSuccess";
 
 function App() {
   const [cartData, setCartData] = useState([]);
@@ -57,6 +58,9 @@ function App() {
             <Route path="/EditProfile" element={<EditProfile />} />
             <Route path="/DetailProduct" element={<DetailProduct />} />
             <Route path="/*" element={<NotFound />} />
+
+            <Route path="/payment_success" element={<PaymentSuccess />} />
+
           </Routes>
         </BrowserRouter>
       </MyContext.Provider>

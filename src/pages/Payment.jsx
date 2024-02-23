@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { IoArrowBackCircle } from "react-icons/io5";
 import Header from "../components/macro/Header";
 import Footer from "../components/macro/Footer";
+import ProcessPayment from "../components/macro/ProcessPayment";
 import {
   getProvinceOngkir,
   getCityOngkir,
@@ -202,9 +203,7 @@ export default function Payment() {
               </div>
 
               <div className="flex justify-center mt-3">
-              <button className='bg-color-primary text-color-light px-4 py-3 mt-5 text-sm hover:bg-color-secondary hover:text-color-light rounded'>
-                  Process Payment
-                </button>
+                    <ProcessPayment/>
               </div>
             </div>
           </div>
