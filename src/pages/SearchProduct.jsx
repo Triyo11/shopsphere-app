@@ -3,10 +3,19 @@ import Header from "../components/macro/Header";
 import { FaArrowLeft, FaPlus } from "react-icons/fa6";
 import ManageProductCard from "../components/macro/ManageProductCard";
 import Footer from "../components/macro/Footer";
+import { getSearch } from "../../utils/searchApiFetch";
+import { useState } from "react";
 
 const SearchProduct = () => {
   const location = useLocation();
   const keyword = decodeURI(location.pathname.split("/").pop());
+  const [searchData, setSearchData] = useState([]);
+  //search product by keyword
+  const searchProduct = async () => {
+    const data = await getSearch(keyword, 1, 10);
+    setSearchData(data);
+  };
+  searchProduct();
 
   return (
     <>
@@ -16,25 +25,30 @@ const SearchProduct = () => {
           <NavLink to={"/"} className="md:visible invisible">
             <FaArrowLeft className="text-5xl fill-color-light bg-color-primary hover:bg-color-secondary rounded-full p-2" />
           </NavLink>
-          <h2 className="font-bold md:text-3xl text-xl text-color-primary max-w-[50rem] text-center">Search for &quot;{keyword} ...&quot;</h2>
+          <h2 className="font-bold md:text-3xl text-xl text-color-primary max-w-[50rem] text-center">
+            Search for &quot;{keyword} ...&quot;
+          </h2>
           <NavLink to={"/"} className="invisible">
             <FaPlus className="text-5xl fill-color-light bg-color-primary hover:bg-color-secondary rounded-full p-2" />
           </NavLink>
         </div>
         <div className="grid min-[1190px]:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 min-[359px]:grid-cols-2 grid-cols-1 md:gap-y-20 gap-y-10 md:gap-x-16 gap-x-7 mt-10">
-          <ManageProductCard />
-          <ManageProductCard />
-          <ManageProductCard />
-          <ManageProductCard />
-          <ManageProductCard />
-          <ManageProductCard />
-          <ManageProductCard />
-          <ManageProductCard />
+          {searchData.map((product) => (
+            <ManageProductCard
+              key={product.id}
+              id={product.id}
+              name={product.name}
+              price={product.price}
+              stock={product.inventory}
+              rating={product.rating}
+              image={product.image}
+            />
+          ))}
         </div>
       </div>
       <Footer />
     </>
-  )
-}
+  );
+};
 
-export default SearchProduct
+export default SearchProduct;
