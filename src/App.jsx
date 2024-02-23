@@ -15,14 +15,28 @@ import DetailProduct from "./pages/DetailProduct";
 import "./style.css";
 import { MyContext } from "./../utils/myContext";
 import Payment from "./pages/Payment";
-import PaymentSuccess from "./components/macro/PaymentSuccess";
+import Cookies from "js-cookie";
 
 function App() {
   const [cartData, setCartData] = useState([]);
   const [addCart, setAddCart] = useState([]);
   const [deletedCart, setDeletedCart] = useState([]);
   const [orderData, setOrderData] = useState([]);
-  const [userData, setUserData] = useState([]);
+  const [checkedItems, setCheckedItems] = useState([]);
+  const [productData, setProductData] = useState([]);
+  //dipakai di header dan login:
+  let userDataCookie = Cookies.get("userDataCookie");
+
+  if (!userDataCookie) {
+    userDataCookie = [];
+  } else {
+    userDataCookie = JSON.parse(userDataCookie);
+  }
+  const [userData, setUserData] = useState(userDataCookie);
+
+  useEffect(() => {
+    setUserData(userDataCookie);
+  }, []);
 
   return (
     <>
@@ -38,8 +52,10 @@ function App() {
           setDeletedCart,
           orderData,
           setOrderData,
-          // userToken,
-          // setUserToken,
+          checkedItems,
+          setCheckedItems,
+          productData,
+          setProductData,
         }}
       >
         <BrowserRouter>
@@ -60,9 +76,6 @@ function App() {
             <Route path="/edit-profile" element={<EditProfile />} />
             <Route path="/detail-product" element={<DetailProduct />} />
             <Route path="/*" element={<NotFound />} />
-
-            <Route path="/payment_success" element={<PaymentSuccess />} />
-
           </Routes>
         </BrowserRouter>
       </MyContext.Provider>
