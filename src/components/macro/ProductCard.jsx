@@ -2,7 +2,7 @@
 // import { NavLink } from "react-router-dom"
 import { FaStar } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { MyContext } from "../../../utils/myContext";
 import { postCart } from "../../../utils/cartApiFetch";
 // id={product.id}
@@ -11,14 +11,20 @@ import { postCart } from "../../../utils/cartApiFetch";
 // stock={product.inventory}
 
 const ProductCard = ({ id, stock, name, price, rating, image }) => {
+  const [successAdd, setSuccessAdd] = useState(false);
   const { setAddCart } = useContext(MyContext);
 
   const updateQuantity = async () => {
-    const addCart = await postCart({
+    const Cart = await postCart({
       product_id: id,
       quantity: 1,
     });
-    await setAddCart(addCart);
+    await setAddCart(Cart);
+    //set timeout to remove the added message
+    setSuccessAdd(true);
+    setTimeout(() => {
+      setSuccessAdd(false);
+    }, 1000);
   };
 
   return (
@@ -46,7 +52,7 @@ const ProductCard = ({ id, stock, name, price, rating, image }) => {
             onClick={updateQuantity}
             className="bg-color-primary hover:bg-color-accent1 text-color-light hover:text-color-primary font-semibold hover:font-bold transition-all w-full py-2 rounded-b-lg"
           >
-            Add to cart
+            {successAdd === true ? "Added" : "Add to cart"}
           </button>
         ) : (
           <div className="flex justify-center bg-color-accent1 text-color-black font-semibold w-full py-2 rounded-b-lg">
