@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 // eslint-disable-next-line no-unused-vars
-import React, { useRef, useState, useContext } from "react"; // Remove duplicate import of useState
+import React, { useRef, useState, useContext, useEffect } from "react"; // Remove duplicate import of useState
 import { NavLink, useNavigate } from "react-router-dom";
 import { MyContext } from "../../../utils/myContext.js";
 import { List, ListItem } from "@mui/material";
@@ -14,6 +14,10 @@ const Header = () => {
   const searchRef = useRef();
   const navigate = useNavigate();
   const { userData, setUserData } = useContext(MyContext);
+  const [name, setName] = useState("");
+  useEffect(() => {
+    setName(userData.name);
+  }, [userData]);
 
   const handleSearchProduct = (event) => {
     const searchKeyword = searchRef.current.value;
@@ -32,6 +36,7 @@ const Header = () => {
 
   const handleLogout = () => {
     Cookies.remove("token");
+    Cookies.remove("userDataCookie");
     setUserData([]);
     navigate("/");
   };

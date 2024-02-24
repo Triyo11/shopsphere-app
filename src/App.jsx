@@ -18,6 +18,7 @@ import Payment from "./pages/Payment";
 import { getProfile } from "../utils/profileApiFetch";
 import PaymentSuccess from "./components/macro/PaymentSuccess";
 import OrderHistory from "./pages/OrderHistory";
+import Cookies from "js-cookie";
 
 function App() {
   const [cartData, setCartData] = useState([]);
@@ -26,15 +27,18 @@ function App() {
   const [orderData, setOrderData] = useState([]);
   const [checkedItems, setCheckedItems] = useState([]);
   const [productData, setProductData] = useState([]);
-  const [userData, setUserData] = useState([]);
   const [quantityAdded, setQuantityAdded] = useState(1);
-  //dipakai di header dan login:
+  const [userData, setUserData] = useState([]);
+
   useEffect(() => {
-    const fetchProfileData = async () => {
-      const data = await getProfile();
-      setUserData(data);
-    };
-    fetchProfileData();
+    const token = Cookies.get("token");
+    if (token) {
+      const fetchProfileData = async () => {
+        const data = await getProfile();
+        setUserData(data);
+      };
+      fetchProfileData();
+    }
   }, []);
 
   return (

@@ -11,6 +11,7 @@ import {
   putPassword,
   putProfile,
 } from "../../utils/profileApiFetch";
+import { Cookie } from "@mui/icons-material";
 
 const shadowStyle = {
   transition: "transform 0.5s ease",
@@ -29,8 +30,6 @@ const isMediumScreen = window.matchMedia("(min-width: 768px)").matches;
 
 const EditProfile = () => {
   // State untuk menyimpan nilai nama, email, dan password
-
-  // const [profileData, setProfileData] = useState([]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -85,7 +84,11 @@ const EditProfile = () => {
       setIsEmailEdit(true);
     }
     if (response.message === "Profile updated") {
-      setUserData(response);
+      //simpan dalam cookie
+      Cookie.set("userDataCookie", JSON.stringify(response.user), {
+        expires: 1,
+      });
+      setUserData(response.user);
     }
     setMessage(response.message);
     setTimeout(() => {

@@ -7,6 +7,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { postLogin } from "../../../utils/loginRegisterApiFetch.js";
 import { getProfile } from "../../../utils/profileApiFetch.js";
 import { MyContext } from "../../../utils/myContext.js";
+import Cookies from "js-cookie";
+import { stringify } from "postcss";
 // import BottonLogin from '../micro/BottonLogin';
 export default function FormLogin() {
   const navigate = useNavigate();
@@ -16,11 +18,6 @@ export default function FormLogin() {
   const [isEmailWrong, setIsEmailWrong] = useState(false);
   const [isPasswordWrong, setIsPasswordWrong] = useState(false);
   const { userData, setUserData } = useContext(MyContext);
-
-  const fetchProfileData = async () => {
-    const data = await getProfile();
-    setUserData(data);
-  };
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -41,7 +38,14 @@ export default function FormLogin() {
         setIsPasswordWrong(false);
       }
       if (data.token && data.user.id) {
-        fetchProfileData();
+        //Simpan token ke cookie
+        Cookies.set("token", data.token, { expires: 1 });
+        //Simpan data user ke cookie
+        Cookies.set("userDataCookie", JSON.stringify(data.user), {
+          expires: 1,
+        });
+        //Simpan data user ke context
+        setUserData(data.user);
         navigate("/");
       }
     };
