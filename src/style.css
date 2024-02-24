@@ -18,6 +18,14 @@ html body {
   -webkit-backdrop-filter: blur(5.7px);
   border: 1px solid rgba(255, 255, 255, 0.06);
 }
+.glass_pink {
+background: rgba(228, 126, 162, 0.21);
+border-radius: 10px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5.1px);
+-webkit-backdrop-filter: blur(5.1px);
+border: 1px solid rgba(226, 203, 211, 0.32);
+}
 
 .menu-category {
   @media screen and (min-width: 768px) {

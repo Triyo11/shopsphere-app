@@ -15,7 +15,12 @@ import DetailProduct from "./pages/DetailProduct";
 import "./style.css";
 import { MyContext } from "./../utils/myContext";
 import Payment from "./pages/Payment";
+
+import PaymentSuccess from "./components/macro/PaymentSuccess";
+import OrderHistory from "./pages/OrderHistory";
+
 import Cookies from "js-cookie";
+
 
 function App() {
   const [cartData, setCartData] = useState([]);
@@ -76,6 +81,13 @@ function App() {
             <Route path="/edit-profile" element={<EditProfile />} />
             <Route path="/detail-product" element={<DetailProduct />} />
             <Route path="/*" element={<NotFound />} />
+
+
+            <Route path="/payment_success" element={<PaymentSuccess />} />
+            <Route path="/order_history" element={<OrderHistory />} />
+
+
+
           </Routes>
         </BrowserRouter>
       </MyContext.Provider>

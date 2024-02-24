@@ -2,8 +2,12 @@ import { useEffect, useState } from "react";
 // eslint-disable-next-line no-unused-vars
 import { Link, useParams, useRoutes, useSearchParams } from "react-router-dom";
 // import { FaCheck } from "react-icons/fa6";
+
+
+
 import Lottie from "lottie-react";
 import animationData from "../../assets/check.json";
+
 
 const PaymentSuccess = () => {
   const [search] = useSearchParams();
