@@ -10,7 +10,7 @@ import { MyContext } from "../../../utils/myContext.js";
 import { postLogin } from "../../../utils/loginRegisterApiFetch.js";
 // import BottonLogin from '../micro/BottonLogin';
 export default function FormLogin() {
-  const { userToken, setUserToken } = useContext(MyContext);
+  const { userData, setUserData } = useContext(MyContext);
   const navigate = useNavigate();
   const [loginResponse, setLoginResponse] = useState([]);
   const [email, setEmail] = useState("");
@@ -37,6 +37,8 @@ export default function FormLogin() {
         setIsPasswordWrong(false);
       }
       if (data.token && data.user.id) {
+        setUserData(data);
+        Cookies.set("userDataCookie", JSON.stringify(data), { expires: 1 });
         Cookies.set("token", data.token, { expires: 1 });
         navigate("/");
       }
