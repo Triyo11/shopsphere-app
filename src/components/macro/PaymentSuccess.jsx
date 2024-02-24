@@ -6,10 +6,6 @@ import Lottie from 'lottie-react'
 import animationData from "../../assets/check.json"
 
 
-
-
-
-
 const PaymentSuccess = () => {
 
     const [search] = useSearchParams();

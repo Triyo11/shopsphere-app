@@ -17,6 +17,7 @@ import { MyContext } from "./../utils/myContext";
 import { useState } from "react";
 import Payment from "./pages/Payment";
 import PaymentSuccess from "./components/macro/PaymentSuccess";
+import OrderHistory from "./pages/OrderHistory";
 
 function App() {
   const [cartData, setCartData] = useState([]);
@@ -60,6 +61,8 @@ function App() {
             <Route path="/*" element={<NotFound />} />
 
             <Route path="/payment_success" element={<PaymentSuccess />} />
+            <Route path="/order_history" element={<OrderHistory />} />
+
 
           </Routes>
         </BrowserRouter>
