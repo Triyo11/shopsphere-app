@@ -80,10 +80,10 @@ function App() {
             <Route path="/notfound" element={<NotFound />} />
             <Route path="/profile" element={<EditProfile />} />
             <Route path="/products/:product_id" element={<DetailProduct />} />
-            <Route path="/*" element={<NotFound />} />
-
+            <Route path="/category/:category_id" element={<NotFound />} />
             <Route path="/payment_success" element={<PaymentSuccess />} />
             <Route path="/order_history" element={<OrderHistory />} />
+            <Route path="/*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
       </MyContext.Provider>

@@ -31,3 +31,19 @@ export const getProductById = async (id) => {
     console.error(error);
   }
 };
+
+export const getProductByCategory = async (category_id) => {
+  try {
+    const response = await fetch(`${url_app}/api/categories/${category_id}`, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+      },
+    });
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
