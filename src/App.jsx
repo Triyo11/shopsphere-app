@@ -16,6 +16,8 @@ import "./style.css";
 import { MyContext } from "./../utils/myContext";
 import Payment from "./pages/Payment";
 import { getProfile } from "../utils/profileApiFetch";
+import PaymentSuccess from "./components/macro/PaymentSuccess";
+import OrderHistory from "./pages/OrderHistory";
 
 function App() {
   const [cartData, setCartData] = useState([]);
@@ -75,6 +77,9 @@ function App() {
             <Route path="/profile" element={<EditProfile />} />
             <Route path="/products/:product_id" element={<DetailProduct />} />
             <Route path="/*" element={<NotFound />} />
+
+            <Route path="/payment_success" element={<PaymentSuccess />} />
+            <Route path="/order_history" element={<OrderHistory />} />
           </Routes>
         </BrowserRouter>
       </MyContext.Provider>
