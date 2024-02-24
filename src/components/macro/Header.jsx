@@ -32,7 +32,6 @@ const Header = () => {
 
   const handleLogout = () => {
     Cookies.remove("token");
-    Cookies.remove("userDataCookie");
     setUserData([]);
     navigate("/");
   };
@@ -63,7 +62,7 @@ const Header = () => {
             className="w-20 h-20 rounded-full object-cover"
           />
           <h2 className="text-lg font-semibold text-color-primary">
-            Hi, {userData.user?.name}
+            Hi, {userData.name}
           </h2>
         </div>
         <List>

@@ -70,9 +70,8 @@ const Home = () => {
             >
               <Menu.Items className="absolute right-0 z-10 mt-2 w-full rounded-md bg-color-light shadow-lg ring-1 ring-black focus:outline-none">
                 <div className="py-1">
-                  {
-                    category.map((category, index) => (
-                      <Menu.Item key={index}>
+                  {category.map((category, index) => (
+                    <Menu.Item key={index}>
                       {({ active }) => (
                         <a
                           href="#"
@@ -87,8 +86,7 @@ const Home = () => {
                         </a>
                       )}
                     </Menu.Item>
-                    ))
-                  }
+                  ))}
                 </div>
               </Menu.Items>
             </Transition>
