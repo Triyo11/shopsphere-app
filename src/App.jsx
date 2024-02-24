@@ -25,6 +25,7 @@ function App() {
   const [checkedItems, setCheckedItems] = useState([]);
   const [productData, setProductData] = useState([]);
   const [userData, setUserData] = useState([]);
+  const [quantityAdded, setQuantityAdded] = useState(1);
   //dipakai di header dan login:
   useEffect(() => {
     const fetchProfileData = async () => {
@@ -38,6 +39,8 @@ function App() {
     <>
       <MyContext.Provider
         value={{
+          quantityAdded,
+          setQuantityAdded,
           userData,
           setUserData,
           cartData,
@@ -69,8 +72,8 @@ function App() {
             <Route path="/order" element={<OrderPage />} />
             <Route path="/payment" element={<Payment />} />
             <Route path="/notfound" element={<NotFound />} />
-            <Route path="/edit-profile" element={<EditProfile />} />
-            <Route path="/detail-product" element={<DetailProduct />} />
+            <Route path="/profile" element={<EditProfile />} />
+            <Route path="/products/:product_id" element={<DetailProduct />} />
             <Route path="/*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

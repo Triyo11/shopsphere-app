@@ -85,7 +85,7 @@ const Header = () => {
           <ListItem>
             <NavLink
               className="text-color-black text-xl font-bold hover:font-normal"
-              to="/edit-profile"
+              to="/profile"
             >
               Profile
             </NavLink>

@@ -30,7 +30,7 @@ const ProductCard = ({ id, stock, name, price, rating, image }) => {
   return (
     <>
       <div className="bg-color-accent1 shadow-2xl flex flex-col md:w-48 w-36 h-full rounded-lg font-poppins">
-        <NavLink to="/product">
+        <NavLink to={`/products/${id}`}>
           <img src={image} className="w-full h-3/5 rounded-t-lg object-cover" />
           <div className="md:p-4 p-2">
             <h2 className="font-bold md:text-md text-sm text-color-accent2 line-clamp-1">
