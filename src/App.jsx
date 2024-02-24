@@ -1,3 +1,4 @@
+import "./style.css";
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes, useParams } from "react-router-dom";
@@ -12,13 +13,14 @@ import Home from "./pages/Home";
 import ManageProduct from "./pages/ManageProduct";
 import SearchProduct from "./pages/SearchProduct";
 import DetailProduct from "./pages/DetailProduct";
-import "./style.css";
-import { MyContext } from "./../utils/myContext";
 import Payment from "./pages/Payment";
-import { getProfile } from "../utils/profileApiFetch";
+import AddProduct from "./pages/AddProductPage";
 import PaymentSuccess from "./components/macro/PaymentSuccess";
 import OrderHistory from "./pages/OrderHistory";
 import Cookies from "js-cookie";
+import { MyContext } from "./../utils/myContext";
+import { getProfile } from "../utils/profileApiFetch";
+import EditProductPage from "./pages/EditProductPage";
 
 function App() {
   const [cartData, setCartData] = useState([]);
@@ -79,6 +81,12 @@ function App() {
             <Route path="/payment" element={<Payment />} />
             <Route path="/notfound" element={<NotFound />} />
             <Route path="/profile" element={<EditProfile />} />
+            <Route path="/add-product" element={<AddProduct />} />
+            <Route
+              path="/edit-product/:product_id"
+              element={<EditProductPage />}
+            />
+            <Route path="/manage-product" element={<ManageProduct />} />
             <Route path="/products/:product_id" element={<DetailProduct />} />
             <Route path="/category/:category_id" element={<NotFound />} />
             <Route path="/payment_success" element={<PaymentSuccess />} />

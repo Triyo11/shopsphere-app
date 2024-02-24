@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
-// import { NavLink } from "react-router-dom"
+import { NavLink } from "react-router-dom";
 import { FaStar } from "react-icons/fa6";
 
-const ManageProductCard = ({ name, price, rating, image }) => {
+const ManageProductCard = ({ name, price, rating, image, id }) => {
   return (
     <>
       <div className="bg-color-accent1 shadow-2xl flex flex-col md:w-48 w-36 h-full rounded-lg font-poppins">
@@ -21,9 +21,11 @@ const ManageProductCard = ({ name, price, rating, image }) => {
             <FaStar className="fill-color-accent2 my-1 text-xl" />
           </div>
         </div>
-        <button className="bg-color-primary hover:bg-color-accent1 text-color-light hover:text-color-primary font-semibold hover:font-bold transition-all w-full py-2 rounded-b-lg">
-          Edit product
-        </button>
+        <NavLink to={`/edit-product/${id}`}>
+          <button className="bg-color-primary hover:bg-color-accent1 text-color-light hover:text-color-primary font-semibold hover:font-bold transition-all w-full py-2 rounded-b-lg">
+            Edit product
+          </button>
+        </NavLink>
       </div>
     </>
   );

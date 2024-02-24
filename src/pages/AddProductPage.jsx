@@ -1,13 +1,11 @@
 import AddProduct from "../components/macro/AddProduct";
-import HeaderAddEdit from "../components/macro/HeaderAddEdit";
+import Header from "../components/macro/Header";
 import Footer from "../components/macro/Footer";
-
 
 const addProduct = () => {
   return (
     <>
-      <HeaderAddEdit />
-
+      <Header />
       <AddProduct />
       <Footer />
     </>

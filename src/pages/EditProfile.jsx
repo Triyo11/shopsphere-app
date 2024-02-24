@@ -36,18 +36,18 @@ const EditProfile = () => {
   const [newPassword, setNewPassword] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   // eslint-disable-next-line no-unused-vars
-  const [isSeller, setIsSeller] = useState(false);
   const [message, setMessage] = useState("");
   const { setUserData } = useContext(MyContext);
+  const [isSeller, setIsSeller] = useState(false);
 
   // get profile data
   useEffect(() => {
     const fetchProfileData = async () => {
       const data = await getProfile();
-      // setProfileData(data);
       setName(data.name);
       setEmail(data.email);
       setImageUrl(data.image);
+      setIsSeller(data.role_id === 2);
     };
     fetchProfileData();
   }, []);
@@ -74,7 +74,7 @@ const EditProfile = () => {
     }
   };
 
-  // Fungsi untuk menyimpan perubahan
+  // Fungsi untuk menyimpan data yang telah diubah ke api
   const editProfileData = async (data) => {
     const response = await putProfile(data);
     if (response.message === "Name or email is required") {
@@ -96,6 +96,7 @@ const EditProfile = () => {
     }, 2000);
   };
 
+  // Fungsi untuk menyimpan data password yang telah diubah ke api
   const editPasswordData = async (data) => {
     const response = await putPassword(data);
     if (response.message !== "Password updated") {
@@ -106,11 +107,12 @@ const EditProfile = () => {
       setMessage("");
     }, 2000);
   };
+
   const editedData = {
     name: name,
     email: email,
     image: imageUrl,
-    role_id: 3,
+    role_id: isSeller ? 2 : 3,
   };
 
   const editedPasswordData = {
@@ -140,6 +142,27 @@ const EditProfile = () => {
     }
   };
 
+  //Memanggil fungsi untuk membuka halaman store
+  const dataOpenStore = {
+    name: name,
+    email: email,
+    image: imageUrl,
+    role_id: 2,
+  };
+  const handleOpenStore = async () => {
+    try {
+      setIsSeller(true);
+      await editProfileData(dataOpenStore);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
+  //Memanggil fungsi untuk membuka halaman manage store
+  const handleManageStore = () => {
+    window.location.href = "/manage-product";
+  };
+
   return (
     <>
       <Header />
@@ -162,7 +185,10 @@ const EditProfile = () => {
             />
           </div>
           <EditPhotoButton />
-          <button className="mt-4 bg-color-primary hover:bg-color-secondary text-color-light font-bold py-2 px-4 rounded">
+          <button
+            onClick={isSeller ? handleManageStore : handleOpenStore}
+            className="mt-4 bg-color-primary hover:bg-color-secondary text-color-light font-bold py-2 px-4 rounded"
+          >
             {isSeller ? "Manage Store" : "Open Store"}
           </button>
         </div>
