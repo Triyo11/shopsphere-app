@@ -10,8 +10,9 @@ export default function OrderHistory() {
         <Header />
 
         <div className=' py-10  '>
-            <h1 className='text-color-secondary text-2xl mb-10'>Order History</h1>
-
+           
+            <h1 className='text-color-secondary text-2xl mb-10 '>Order History</h1>
+            
             <div className='w-10/12 mx-auto  max-sm:w-11/12 md:w-11/12  lg:w-11/12  bg-color-light rounded shadow-md  shadow-black pb-4 mb-10 '>
 
               <div className=' w-full max-sm:w-full max-sm:text-sm max-sm:font-thin max-sm:gap-1 md:w-full md:text-sm md:gap-10 lg:w-full lg:gap-24 lg:text-md flex justify-center text-color-secondary font-bold gap-24 mb-8 sticky top-20  py-3 glass_pink'>
