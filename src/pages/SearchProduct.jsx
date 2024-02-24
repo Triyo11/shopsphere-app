@@ -6,17 +6,17 @@ import Footer from "../components/macro/Footer";
 
 const SearchProduct = () => {
   const location = useLocation();
-  const keyword = location.pathname.split("/").pop();
+  const keyword = decodeURI(location.pathname.split("/").pop());
 
   return (
     <>
       <Header />
       <div className="font-poppins mt-10 flex flex-col items-center w-full max-h-max pt-3 pb-24">
-        <div className="bg-color-light sticky top-20 flex justify-between items-center w-full px-20 py-2">
-          <NavLink to={"/"}>
+        <div className="bg-color-light sticky top-16 flex justify-between items-center w-full px-20 py-2">
+          <NavLink to={"/"} className="md:visible invisible">
             <FaArrowLeft className="text-5xl fill-color-light bg-color-primary hover:bg-color-secondary rounded-full p-2" />
           </NavLink>
-          <h2 className="font-bold text-3xl text-color-primary">Search for `{keyword} ...`</h2>
+          <h2 className="font-bold md:text-3xl text-xl text-color-primary max-w-[50rem] text-center">Search for &quot;{keyword} ...&quot;</h2>
           <NavLink to={"/"} className="invisible">
             <FaPlus className="text-5xl fill-color-light bg-color-primary hover:bg-color-secondary rounded-full p-2" />
           </NavLink>

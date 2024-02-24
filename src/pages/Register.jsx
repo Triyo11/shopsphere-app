@@ -5,7 +5,7 @@ import Logo from "../components/micro/Logo";
 
 export default function Register() {
   return (
-    <div className="font-poppins w-full flex flex-col items-center justify-center tracking-wider bg-color-primary pb-10">
+    <div className="font-poppins w-full h-screen flex flex-col items-center justify-center tracking-wider bg-color-primary pb-10">
       <Logo />
       <FormRegister />
     </div>

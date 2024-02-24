@@ -41,7 +41,7 @@ const CartPage = () => {
         <Header />
 
         <CartHeader />
-        <div className="flex justify-center items-center pb-4">
+        <div className="mb-auto flex justify-center items-center pb-4">
           {showMessage && addCart.message && (
             <p className="text-center text-color-secondary absolute">
               {addCart.message}

@@ -4,6 +4,7 @@ import { config } from "dotenv";
 config();
 
 const api_ongkir_url = process.env.VITE_API_ONGKIR_URL;
+const api_url = process.env.VITE_API_URL;
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -24,6 +25,11 @@ export default defineConfig({
         target: `${api_ongkir_url}/cost`,
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/cost/, ""),
+      },
+      "/api": {
+        target: `${api_url}/api`,
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
       },
     },
   },

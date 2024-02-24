@@ -1,9 +1,9 @@
 const key_ongkir = import.meta.env.VITE_KEY_ONGKIR;
-const url_api_fe_ongkir = import.meta.env.VITE_API_FE_ONGKIR_URL;
+const url_app = import.meta.env.VITE_APP_URL;
 
 export const getProvinceOngkir = async () => {
   try {
-    const response = await fetch(`${url_api_fe_ongkir}/province`, {
+    const response = await fetch(`${url_app}/province`, {
       method: "GET",
       headers: {
         key: key_ongkir,
@@ -18,15 +18,12 @@ export const getProvinceOngkir = async () => {
 
 export const getCityOngkir = async (province) => {
   try {
-    const response = await fetch(
-      `${url_api_fe_ongkir}/city?province=${province}`,
-      {
-        method: "GET",
-        headers: {
-          key: key_ongkir,
-        },
-      }
-    );
+    const response = await fetch(`${url_app}/city?province=${province}`, {
+      method: "GET",
+      headers: {
+        key: key_ongkir,
+      },
+    });
     const data = await response.json();
     return data;
   } catch (error) {
@@ -36,7 +33,7 @@ export const getCityOngkir = async (province) => {
 
 export const getCostOngkir = async (origin, destination, courier = "jne") => {
   try {
-    const response = await fetch(`${url_api_fe_ongkir}/cost`, {
+    const response = await fetch(`${url_app}/cost`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
