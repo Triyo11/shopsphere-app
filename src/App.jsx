@@ -12,6 +12,8 @@ import Home from "./pages/Home";
 import ManageProduct from "./pages/ManageProduct";
 import SearchProduct from "./pages/SearchProduct";
 import DetailProduct from "./pages/DetailProduct";
+import AddProduct from "./pages/AddProductPage";
+import EditProduct from "./pages/EditProductPage";
 import "./style.css";
 import { MyContext } from "./../utils/myContext";
 import Payment from "./pages/Payment";
@@ -58,6 +60,8 @@ function App() {
             <Route path="/notfound" element={<NotFound />} />
             <Route path="/edit-profile" element={<EditProfile />} />
             <Route path="/detail-product" element={<DetailProduct />} />
+            <Route path="/add-product" element={<AddProduct />} />
+            <Route path="/edit-product" element={<EditProduct />} />
             <Route path="/*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

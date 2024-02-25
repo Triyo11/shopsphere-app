@@ -4,6 +4,7 @@ import Footer from "../components/macro/Footer";
 import Header from "../components/macro/Header";
 import EditProfileHeader from "../components/macro/EditProfileHeader";
 import EditPhotoButton from "../components/micro/EditPhotoButton";
+import { NavLink } from "react-router-dom";
 
 const shadowStyle = {
   transition: 'transform 0.5s ease',
@@ -86,9 +87,9 @@ const EditProfile = () => {
             />
           </div>
           <EditPhotoButton />
-          <button className="mt-4 bg-color-primary hover:bg-color-secondary text-color-light font-bold py-2 px-4 rounded">
+          <NavLink to={"/manage-product"} className="mt-4 bg-color-primary hover:bg-color-secondary text-color-light font-bold py-2 px-4 rounded">
             {isSeller ? "Manage Store" : "Open Store"}
-          </button>
+          </NavLink>
         </div>
 
         {/* Bagian Sebelah Kanan */}

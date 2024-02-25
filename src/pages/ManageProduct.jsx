@@ -14,7 +14,7 @@ const ManageProduct = () => {
             <FaArrowLeft className="md:text-5xl text-3xl fill-color-light bg-color-primary hover:bg-color-secondary rounded-full md:p-2 p-1" />
           </NavLink>
           <h2 className="font-bold md:text-3xl text-xl text-center text-color-primary">Manage My Product</h2>
-          <NavLink to={"/"}>
+          <NavLink to={"/add-product"}>
             <FaPlus className="md:text-5xl text-3xl fill-color-light bg-color-primary hover:bg-color-secondary rounded-full md:p-2 p-1" />
           </NavLink>
         </div>
