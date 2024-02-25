@@ -111,6 +111,13 @@ export default function Payment() {
               action=""
               className="inline-block py-4 max-sm:w-full  md:w-full lg:w-11/12"
             >
+
+              <div className="py-3 max-sm:w-full md:w-full lg:w-full ">
+                <label htmlFor="" className="text-2xl py-3">Address</label>
+                <textarea name="" id="" cols="20" rows="4" className="block  bg-color-accent1 pl-2 pr-2 rounded outline-none max-sm:w-full md:w-full lg:w-full"></textarea>
+               
+              </div>
+
               <div className="py-3 max-sm:w-full md:w-full lg:w-full">
                 <label htmlFor="" className="text-2xl py-3">
                   Province
@@ -132,7 +139,8 @@ export default function Payment() {
                 </select>
               </div>
 
-              <div className="py-3 max-sm:w-full md:w-full lg:w-full">
+              
+              <div className="py-3  max-sm:w-full md:w-full lg:w-full">
                 <label htmlFor="" className="text-2xl py-3">
                   City
                 </label>
@@ -152,7 +160,49 @@ export default function Payment() {
                 </select>
               </div>
 
-              <div className="py-3 max-sm:w-full md:w-full lg:w-full">
+
+              <div className="py-3 mt-3 max-sm:w-full md:w-full lg:w-full border-2 border-solid border-color-secondary">
+
+              
+
+              <div className="py-3 px-3 max-sm:w-full md:w-full lg:w-full">
+                <h1 className="mb-3">Seller 1</h1>
+                
+                <div className="flex flex-wrap justify-between">
+                    
+                    <div className="flex gap-4 max-sm:gap-2">
+                      <div className="w-24 h-20 mb-2 mr-2 border-2 border-solid border-color-secondary">
+                        <img src="" alt="" />
+                      </div>
+                      <div>
+                        <p className="text-2xl ">Product 2</p>
+                        <p >Qty: 2</p>
+                        <p >Rp. 35000</p>
+                      
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div className="flex flex-wrap justify-between">
+                    
+                    <div className="flex gap-4 max-sm:gap-2">
+                      <div className="w-24 h-20 mb-2 mr-2 border-2 border-solid border-color-secondary">
+                        <img src="" alt="" />
+                      </div>
+                      <div>
+                        <p className="text-2xl">Product 2</p>
+                        <p >Qty: 2</p>
+                        <p >Rp. 35000</p>
+                      </div>
+
+                    </div>
+                    
+                  </div>
+              </div>
+
+
+              <div className="py-3 px-3 max-sm:w-full md:w-full lg:w-full">
                 <label htmlFor="" className="text-2xl mb-3">
                   Curier
                 </label>
@@ -170,7 +220,7 @@ export default function Payment() {
                 </select>
               </div>
 
-              <div className="py-3 max-sm:w-full md:w-full lg:w-full">
+              <div className="py-3 px-3 max-sm:w-full md:w-full lg:w-full">
                 <label htmlFor="" className="text-2xl mb-3">
                   Service
                 </label>
@@ -190,12 +240,13 @@ export default function Payment() {
                   ))}
                 </select>
               </div>
+              </div>
             </form>
           </div>
 
           <div className="w-11/12 my-14 flex justify-between mx-8  max-sm:my-4 max-sm:w-full max-sm:py-2 max-sm:mx-1 md:w-full  lg:w-full ">
             <div className="text-2xl max-sm:text-sm w-full md:w-full md:text-2xl lg:w-full ">
-              <p className="text-center text-sm mb-5">Description</p>
+              <p className="text-center text-sm mb-8">Description</p>
               <div className="w-10/15 flex justify-between gap-24  mb-5 max-sm:gap-2 max-sm:w-full md:w-full lg:w-full">
                 <div>Sub Total:</div>
                 <div className="px-20 max-sm:px-5 lg:px-3">Rp {subtotal}</div>
@@ -212,7 +263,7 @@ export default function Payment() {
                 <div className="px-20 max-sm:px-5 lg:px-3">Rp {total}</div>
               </div>
 
-              <div className="flex justify-center mt-3">
+              <div className="flex justify-center mt-5">
                     <ProcessPayment/>
 
               </div>

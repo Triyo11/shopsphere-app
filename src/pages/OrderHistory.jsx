@@ -12,7 +12,8 @@ export default function OrderHistory() {
         <div className=' py-10  '>
             <h1 className='text-color-secondary text-2xl mb-10'>Order History</h1>
 
-            <div className='w-10/12 mx-auto  max-sm:w-11/12 md:w-11/12  lg:w-11/12  bg-color-light rounded shadow-md  shadow-black pb-4 mb-10 '>
+            <div className='overflow-scroll-x'>
+              <div className='w-10/12 mx-auto  max-sm:w-11/12 md:w-11/12  lg:w-11/12  bg-color-light rounded shadow-md  shadow-black pb-4 mb-10 '>
 
               <div className=' w-full max-sm:w-full max-sm:text-sm max-sm:font-thin max-sm:gap-1 md:w-full md:text-sm md:gap-10 lg:w-full lg:gap-24 lg:text-md flex justify-center text-color-secondary font-bold gap-24 mb-8 sticky top-20  py-3 glass_pink'>
                   <p>Image</p>
@@ -24,12 +25,12 @@ export default function OrderHistory() {
                   <p>Status order</p>
               </div>
 
-            <div className=' w-full flex gap-8 mb-10 max-sm:text-sm md:text-normal lg:text-normal md:gap-6 lg:gap-14'>
+            <div className=' max-w-max flex gap-8 mb-10 max-sm:text-sm md:text-normal lg:text-normal md:gap-6 lg:gap-14'>
               <div className=' w-40 h-32 border-2 border-solid border-color-secondary ml-10 md:w-16 md:h-20 md:ml-6 lg:w-48 lg:h-24 lg:ml-20 max-lg:w-20 '>
                   <img src="" alt=""  />
                 </div>
 
-              <div className=' w-full pl-4 mt-4 md:w-11/12  md:mt-0 lg:w-full '>
+              <div className='  pl-4 mt-4 md:w-11/12  md:mt-0 lg:w-full '>
                 <div className='flex gap-24 mb-8 md:gap-9 md:mb-3 lg:gap-20'>
                   <p>Lennovo</p>
                   <p className='ml-12 lg:ml-12'>Rp 20000</p>
@@ -168,7 +169,8 @@ export default function OrderHistory() {
             </div>
            
 
-          </div>
+              </div>
+            </div>
 
           </div>
 
