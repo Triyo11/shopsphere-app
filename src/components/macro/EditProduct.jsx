@@ -67,11 +67,6 @@ const EditProduct = () => {
           <h2 className="text-color-primary max-sm:text-2xl md:text-4xl lg:text-5xl">
             Edit <span className="text-color-secondary"> Product</span>
           </h2>
-          <img
-            className=" h-14 w-5/6"
-            src="public/assets/—Pngtree—shadow straight line transparent png_7961413.png"
-            alt=""
-          />
         </h1>
       </div>
       <div className="md:mx-48 mx-2 md:mb-48 mb-2 flex flex-col justify-center rounded-xl shadow-2xl p-8">
