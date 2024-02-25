@@ -1,15 +1,37 @@
 /* eslint-disable react/prop-types */
+import { useContext, useState } from "react";
 import ButtonDelete from "../micro/ButtonDelete";
 import ButtonPlusMinus from "../micro/ButtonPlusMinus";
 import ButtonPlusMinusFlex from "../micro/ButtonPlusMinusFlex";
-import Checkbox from "../micro/Checkbox";
+import { MyContext } from "../../../utils/myContext";
+// import Checkbox from "../micro/Checkbox";
 
 const CartCard = ({ item }) => {
+  //--choose the items
+  const { checkedItems, setCheckedItems } = useContext(MyContext);
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleCheckboxChange = (event) => {
+    const isChecked = event.target.checked;
+    setIsChecked(isChecked);
+    if (isChecked) {
+      setCheckedItems([...checkedItems, item.id]);
+    } else {
+      setCheckedItems(checkedItems.filter((itemId) => itemId !== item.id));
+    }
+  };
   return (
     <div className="md:ml-[63px] mb-6 flex justify-between items-center">
       <div className="flex">
         <div className="flex items-center">
-          <Checkbox />
+          <div className="m-[10px] sm:m-[20px]">
+            <input
+              type="checkbox"
+              checked={isChecked}
+              onChange={handleCheckboxChange}
+              className="form-checkbox h-4 w-4 sm:h-8 sm:w-8"
+            />
+          </div>
           <img
             className="h-[100px] w-[100px] lg:h-[170px] lg:w-[170px] object-fill rounded-[10px]"
             src={item.product.image}

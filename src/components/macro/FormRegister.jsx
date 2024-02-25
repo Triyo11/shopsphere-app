@@ -3,9 +3,14 @@ import { MdEmail } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { postRegister } from "../../../utils/loginRegisterApiFetch.js";
+import { postRegister } from "../../../utils/loginRegisterApiFetch";
 // import BottonRegister from '../micro/BottonRegister';
+import { useState, useEffect } from "react";
+
+import {
+  getProvinceOngkir,
+  getCityOngkir,
+} from "../../../utils/rajaongkirApiFetch";
 
 // TODO : validation about email
 export default function FormRegister() {
@@ -79,6 +84,53 @@ export default function FormRegister() {
     };
     fetchRegister(name, email, password);
   };
+
+
+  const [provinceOngkirData, setProvinceOngkirData] = useState([]);
+  const [cityOngkirData, setCityOngkirData] = useState([]);
+ 
+
+  // State untuk menyimpan id provinsi dan city yang dipilih
+  const [selectedProvinceId, setSelectedProvinceId] = useState(5);
+  // eslint-disable-next-line no-unused-vars
+  const [selectedCityId, setSelectedCityId] = useState(39);
+  
+
+  // Fungsi untuk menangani perubahan pilihan provinsi dan kota
+  const handleProvinceChange = (event) => {
+    setSelectedProvinceId(event.target.value);
+  };
+  const handleCityChange = (event) => {
+    setSelectedCityId(event.target.value);
+  };
+ 
+ 
+  // get province list
+  useEffect(() => {
+    const fetchProvinceOngkir = async () => {
+      const data = await getProvinceOngkir();
+      setProvinceOngkirData(data.rajaongkir.results);
+    };
+    fetchProvinceOngkir();
+  }, []);
+
+  // get Cities list
+  useEffect(() => {
+    const fetchCityOngkir = async () => {
+      if (selectedProvinceId) {
+        const data = await getCityOngkir(selectedProvinceId);
+        setCityOngkirData(data.rajaongkir.results);
+      }
+    };
+    fetchCityOngkir();
+  }, [selectedProvinceId]);
+
+  // get Cost list
+  
+
+  // Menghitung total harga
+ 
+
 
   return (
     <div className="w-11/12 sm:w-5/15 md:w-5/12  lg:w-3/12 text-sm glass">
@@ -183,6 +235,50 @@ export default function FormRegister() {
           </p>
         </div>
 
+
+
+        <div className="py-2 px-6 max-sm:w-full md:w-full lg:w-full">
+                <label htmlFor="" className="py-3 px-2 text-color-light text-sm">
+                  Province
+                </label>
+                <select
+                  onChange={handleProvinceChange}
+                  id=""
+                  className="block w-80 h-8 text-color-secondary bg-color-light pl-2 pr-2 rounded outline-none max-sm:w-full md:w-full lg:w-full"
+                >
+                  <option disabled selected >
+                    {" "}
+                    Choose province
+                  </option>
+                  {provinceOngkirData.map((province, index) => (
+                    <option key={index} value={province.province_id}>
+                      {province.province}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+
+              <div className="py-2 px-6 max-sm:w-full md:w-full lg:w-full">
+                <label htmlFor="" className="text-sm px-2 text-color-light py-3">
+                  City
+                </label>
+                <select
+                  onChange={handleCityChange}
+                  className="block w-80 h-8 text-color-secondary bg-color-light pl-2 pr-2 rounded outline-none max-sm:w-full md:w-full lg:w-full"
+                  id=""
+                >
+                  <option disabled selected>
+                    Choose City
+                  </option>
+                  {cityOngkirData.map((city, index) => (
+                    <option key={index} value={city.city_id}>
+                      {city.city_name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
         {/* <BottonRegister/> */}
         <div className="mx-5 my-7 py-2 text-center">
           <input
@@ -194,7 +290,7 @@ export default function FormRegister() {
       </form>
       <Link
         to="/login"
-        className="mx-5 my-5 py-2 flex item-center justify-center cursor-pointer text-color-secondary"
+        className="mx-5 my-2 py-1 flex item-center justify-center cursor-pointer text-color-secondary"
       >
         <p className="text-sm">Already have a account ? / Login</p>
       </Link>

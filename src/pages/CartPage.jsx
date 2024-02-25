@@ -8,10 +8,13 @@ import { MyContext } from "../../utils/myContext";
 import { getCart } from "../../utils/cartApiFetch";
 import Header from "../components/macro/Header";
 import Footer from "../components/macro/Footer";
+import { postOrder } from "../../utils/orderApiFetch";
+import { useNavigate } from "react-router-dom";
 
 const CartPage = () => {
   //Consume ContextAPI
   const { cartData, setCartData, addCart, deletedCart } = useContext(MyContext);
+  const navigate = useNavigate();
 
   //Fungsi yg ngatur lama pesan muncul
   const [showMessage, setShowMessage] = useState(true);
@@ -35,6 +38,22 @@ const CartPage = () => {
     fetchCart();
   }, [addCart, deletedCart]);
 
+  //Proses Order:
+  // eslint-disable-next-line no-unused-vars
+  const { checkedItems, setCheckedItems } = useContext(MyContext);
+
+  const handleCheckout = async (checkedItems) => {
+    try {
+      const response = await postOrder(checkedItems);
+      const data = await response;
+      if (data.message === "Order placed successfully") {
+        navigate("/order");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <div className="flex flex-col min-h-screen">
@@ -51,11 +70,11 @@ const CartPage = () => {
 
         {cartData.cart && cartData.cart.length > 0 ? (
           <>
-            {cartData.cart.map((item, index) => (
-              <CartCard key={index} item={item} />
+            {cartData.cart.map((item) => (
+              <CartCard key={item.id} item={item} />
             ))}
             <Subtotal />
-            <ButtonCheckout />
+            <ButtonCheckout onClick={() => handleCheckout(checkedItems)} />
           </>
         ) : (
           <p className="font-bold text-color-primary text-3xl text-center">

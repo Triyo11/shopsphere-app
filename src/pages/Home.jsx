@@ -13,15 +13,8 @@ function classNames(...classes) {
 }
 
 const Home = () => {
-  const category = [
-    "Electronics",
-    "Fashion",
-    "Grocery",
-    "Home",
-    "Beauty",
-    "Tools",
-    "Toys",
-  ];
+  const category = ["Fashion", "Furniture", "Electronic", "Tools", "Food"];
+  const category_id = [1, 2, 3, 4, 5];
 
   const isMediumScreen = window.matchMedia("(min-width: 768px)").matches;
 
@@ -32,12 +25,20 @@ const Home = () => {
         <div className="bg-color-light flex flex-col items-center w-full max-h-max pt-3 pb-24">
           <div className="menu-category">
             {category.map((category, index) => (
-              <LinkCategoryProduct key={index} category={category} />
+              <LinkCategoryProduct
+                key={index}
+                category={category}
+                category_id={category_id[index]}
+              />
             ))}
           </div>
           <GeneralEtalase />
           {category.map((category, index) => (
-            <CategoryEtalase key={index} categoryName={category} />
+            <CategoryEtalase
+              key={index}
+              categoryName={category}
+              category_id={category_id[index]}
+            />
           ))}
         </div>
         <Footer />
@@ -70,9 +71,8 @@ const Home = () => {
             >
               <Menu.Items className="absolute right-0 z-10 mt-2 w-full rounded-md bg-color-light shadow-lg ring-1 ring-black focus:outline-none">
                 <div className="py-1">
-                  {
-                    category.map((category, index) => (
-                      <Menu.Item key={index}>
+                  {category.map((category, index) => (
+                    <Menu.Item key={index}>
                       {({ active }) => (
                         <a
                           href="#"
@@ -87,8 +87,7 @@ const Home = () => {
                         </a>
                       )}
                     </Menu.Item>
-                    ))
-                  }
+                  ))}
                 </div>
               </Menu.Items>
             </Transition>

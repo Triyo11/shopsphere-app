@@ -19,3 +19,23 @@ export const getOrder = async (orderItem) => {
     console.error(error);
   }
 };
+
+export const postOrder = async (checkedItems) => {
+  try {
+    const response = await fetch(`${url_app}/api/order`, {
+      method: "POST",
+      headers: {
+        Authorization: token,
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        cart_id: checkedItems,
+      }),
+    });
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};

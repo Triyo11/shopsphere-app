@@ -2,31 +2,66 @@
 // import { NavLink } from "react-router-dom"
 import { FaStar } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
+import { useContext, useState } from "react";
+import { MyContext } from "../../../utils/myContext";
+import { postCart } from "../../../utils/cartApiFetch";
+// id={product.id}
+// name={product.name}
+// price={product.price}
+// stock={product.inventory}
 
-const ProductCard = ({ stock }) => {
+const ProductCard = ({ id, stock, name, price, rating, image }) => {
+  const [successAdd, setSuccessAdd] = useState(false);
+  const { setAddCart } = useContext(MyContext);
+
+  const updateQuantity = async () => {
+    const Cart = await postCart({
+      product_id: id,
+      quantity: 1,
+    });
+    await setAddCart(Cart);
+    //set timeout to remove the added message
+    setSuccessAdd(true);
+    setTimeout(() => {
+      setSuccessAdd(false);
+    }, 1000);
+  };
 
   return (
     <>
       <div className="bg-color-accent1 shadow-2xl flex flex-col md:w-48 w-36 h-full rounded-lg font-poppins">
-        <NavLink to="/product">
-          <img src="https://placehold.co/600x400" className="w-full h-3/5 rounded-t-lg object-cover"/>
+        <NavLink to={`/products/${id}`}>
+          <img src={image} className="w-full h-3/5 rounded-t-lg object-cover" />
           <div className="md:p-4 p-2">
-            <h2 className="font-bold md:text-md text-sm text-color-accent2">Product Name</h2>
-            <h2 className="font-semibold md:text-md text-sm text-color-black">Rp 100.000</h2>
+            <h2 className="font-bold md:text-md text-sm text-color-accent2 line-clamp-1">
+              {name}
+            </h2>
+            <h2 className="font-semibold md:text-md text-sm text-color-black">
+              Rp {price}
+            </h2>
             <div className="flex gap-x-1 md:mb-0 mb-4">
-              <div className="text-color-accent2 font-semibold pt-[0.20rem]">4.3</div>
-              <FaStar className="fill-color-accent2 my-1 text-xl"/>
+              <div className="text-color-accent2 font-semibold pt-[0.20rem]">
+                {rating}
+              </div>
+              <FaStar className="fill-color-accent2 my-1 text-xl" />
             </div>
           </div>
         </NavLink>
         {stock > 0 ? (
-          <button className="bg-color-primary hover:bg-color-accent1 text-color-light hover:text-color-primary font-semibold hover:font-bold transition-all w-full py-2 rounded-b-lg">Add to cart</button>
+          <button
+            onClick={updateQuantity}
+            className="bg-color-primary hover:bg-color-accent1 text-color-light hover:text-color-primary font-semibold hover:font-bold transition-all w-full py-2 rounded-b-lg"
+          >
+            {successAdd === true ? "Added" : "Add to cart"}
+          </button>
         ) : (
-          <div className="flex justify-center bg-color-accent1 text-color-black font-semibold w-full py-2 rounded-b-lg">Empty</div>
+          <div className="flex justify-center bg-color-accent1 text-color-black font-semibold w-full py-2 rounded-b-lg">
+            Empty
+          </div>
         )}
       </div>
     </>
-  )
-}
+  );
+};
 
-export default ProductCard
+export default ProductCard;
