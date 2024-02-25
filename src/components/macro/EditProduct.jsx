@@ -1,208 +1,222 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import { NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
+
 const product = {
   id: 1,
   name: "TV",
   price: 1000,
   description: "This is the best product of all time",
   inventory: 100,
-  image: "public/assets/astronaut_spacesuit_reflection_144426_3840x2160.jpg",
-  category: "Furniture",
+  image: "http://res.cloudinary.com/dbqbijf9v/image/upload/v1708737690/shopsphere/qkydcfqtgz5ggd7abygt.png",
+  category: "Electronic",
 };
 
 const EditProduct = () => {
+  const [photo, setPhoto] = useState(product.image);
+  const [photoObject, setPhotoObject] = useState([]);
+  const [urlPhoto, setUrlPhoto] = useState();
+  const [dataChanged, setDataChanged] = useState({});
+  const cloudName = "dbqbijf9v";
+  const uploadPreset = "shopsphere";
+
+  const handleUploadPhoto = async () => {
+    const data = new FormData();
+    data.append("file", photoObject);
+    data.append("upload_preset", uploadPreset);
+    data.append("folder", "shopsphere2");
+    await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
+      method: "POST",
+      body: data,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        const url = data.url;
+        setUrlPhoto(url);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {    
+    const data = {
+      name: document.getElementById("ProductName").value,
+      price: document.getElementById("Price").value,
+      description: document.getElementById("Description").value,
+      inventory: document.getElementById("Inventory").value,
+      image: urlPhoto,
+    };
+    setDataChanged(data);
+  }, [urlPhoto]);
+
+
+  const handleSaveProduct = async (e) => {
+    e.preventDefault();
+    handleUploadPhoto();
+
+    // fetch POST EDIT PRODUCT
+  };
+
+  console.log(dataChanged);
+
   return (
-    <div className="">
-      <div className="font-bold text-5xl py-16 text-center  ">
-        <h1 className="text-5xl font-bold space-x-3 ">
-          <span className="text-color-primary max-sm:text-2xl md:text-4xl lg:text-5xl">
-            Edit
-          </span>
-          <span className="text-slate-800 max-sm:text-2xl md:text-4xl lg:text-5xl">
-            Product
-          </span>
+    <div className="font-poppins w-full">
+      <div className="font-bold text-5xl pt-16 text-center  ">
+        <h1 className="text-5xl flex flex-col items-center font-bold space-x-3 ">
+          <h2 className="text-color-primary max-sm:text-2xl md:text-4xl lg:text-5xl">
+            Edit <span className="text-color-secondary"> Product</span>
+          </h2>
           <img
-            className=" h-24 w-full"
+            className=" h-14 w-5/6"
             src="public/assets/—Pngtree—shadow straight line transparent png_7961413.png"
             alt=""
           />
         </h1>
       </div>
-      <div className="mx-48 mb-48 flex-auto rounded-xl shadow-2xl py-4">
-        <div className="mx-16 flex-2 w-64 space-y-12">
-          <div className="mt-10 grid-cols-1 gap-x-6 gap-y-8 ">
-            <div className="max-sm:2xl md:4xl lg:5xl">
-              <label
-                htmlFor="Product Name"
-                className="block text-xl font-medium leading-6 text-gray-900"
-              >
-                Product Name
-              </label>
-              <div className="mt-2">
-                <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                  <input
-                    type="text"
-                    name="Product Name"
-                    id="Product Name"
-                    autoComplete="Product Name"
-                    className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                    placeholder="Baju bagus"
-                    defaultValue={product.name}
-                  />
-                </div>
-              </div>
-            </div>
+      <div className="md:mx-48 mx-2 md:mb-48 mb-2 flex flex-col justify-center rounded-xl shadow-2xl p-8">
+        <form onSubmit={handleSaveProduct}>
+          <label
+            htmlFor="ProductName"
+            className="block text-xl font-medium leading-6"
+          >
+            Product Name
+          </label>
+          <div className="mt-2 flex rounded-md shadow-sm ring-1 ring-inset focus-within:ring-2 focus-within:ring-inset sm:max-w-md">
+            <input
+              type="text"
+              name="ProductName"
+              id="ProductName"
+              className="block flex-1 border-0 bg-transparent py-2 px-4 ring-2 ring-color-secondary focus:ring-color-primary outline-none rounded-sm sm:text-sm sm:leading-6"
+              placeholder="What do you sell?"
+              defaultValue={product.name}
+              required
+            />
           </div>
-        </div>
-        <div className="mx-16 flex-2 w-64 space-y-12">
-          <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8">
-            <div className="sm:col-span-4">
-              <label
-                htmlFor="Product Name"
-                className="block text-xl font-medium leading-6 text-gray-900"
-              >
-                Price
-              </label>
-              <div className="mt-2">
-                <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                  <input
-                    type="text"
-                    name="Price"
-                    id="Price"
-                    autoComplete="Price"
-                    className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                    placeholder="Rp 20.000"
-                    defaultValue={product.price}
-                  />
-                </div>
-              </div>
-            </div>
+          <label
+            htmlFor="Price"
+            className="pt-4 block text-xl font-medium leading-6"
+          >
+            Price
+          </label>
+          <div className="mt-2 flex rounded-md shadow-sm ring-1 ring-inset focus-within:ring-2 focus-within:ring-inset sm:max-w-md">
+            <input
+              type="number"
+              name="Price"
+              id="Price"
+              className="block flex-1 border-0 bg-transparent py-2 px-4 ring-2 ring-color-secondary focus:ring-color-primary outline-none rounded-sm sm:text-sm sm:leading-6"
+              placeholder="How much do you sell?"
+              min="0"
+              defaultValue={product.price}
+              required
+            />
           </div>
-        </div>
-        <div className="mx-16 flex-2 w-64 space-y-12">
-          <div>
-            <label className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 text-xl font-medium leading-16 text-gray-900 w-32 ">
-              Category
-            </label>
-
-            <div className="mt-5 grid grid-cols-1 gap-x-6 gap-y-8">
-              <select
-                type="text"
-                className="flex rounded-md shadow-sm py-2 pl-4 ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md"
-                defaultValue={product.category}
-              >
-                <input></input>
-                <option>Fashion</option>
-                <option>Electronic</option>
-                <option>Furniture</option>
-              </select>
-            </div>
-          </div>
-        </div>
-        <div className="mx-16 flex-2 w-64 space-y-12">
-          <div className="mt-10 grid grid-cols-1">
-            <div className="sm:col-span-4">
-              <label
-                htmlFor="Product Name"
-                className="block text-xl font-medium leading-6 text-gray-900"
-              >
-                Description
-              </label>
-              <div className="mt-5 grid grid-cols-1 gap-x-6 gap-y-8">
-                <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                  <input
-                    type="text"
-                    name="Description"
-                    id="Description"
-                    autoComplete="Description"
-                    className="block flex-1 border-0 bg-color-light rounded-lg py-10 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                    placeholder="..."
-                    defaultValue={product.description}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="mx-16 flex-2 w-64 space-y-12">
-          <div className="mt-10 grid grid-cols-1">
-            <div className="sm:col-span-4">
-              <label
-                htmlFor="Product Name"
-                className="block text-xl font-medium leading-6 text-gray-900"
-              >
-                Inventory
-              </label>
-              <div className="mt-2">
-                <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                  <input
-                    type="text"
-                    name="Inventory"
-                    id="Inventory"
-                    autoComplete="Inventory"
-                    className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                    placeholder="100"
-                    defaultValue={product.inventory}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="mx-16 flex-2 w-64 col-span-full">
-          <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8">
-            <label
-              htmlFor="cover-photo"
-              className="block text-xl font-medium leading-6 text-gray-900"
+          <label
+            htmlFor="Category"
+            className="pt-4 grid grid-cols-1 gap-x-6 gap-y-8 text-xl font-medium leading-16 w-32 "
+          >
+            Category
+          </label>
+          <div className="mt-2 grid grid-cols-1 gap-x-6 gap-y-8">
+            <select
+              id="Category"
+              name="Category"
+              className="text-md flex rounded-md outline-0 shadow-sm py-2 pl-4 ring-2 ring-inset ring-color-secondary focus-within:ring-2 focus-within:ring-inset focus-within:ring-color-primary sm:max-w-md"
+              defaultValue={product.category}
+              required
             >
-              Edit photo
-            </label>
+              <option disabled value="">
+                Choose category
+              </option>
+              <option>Fashion</option>
+              <option>Electronic</option>
+              <option>Furniture</option>
+            </select>
           </div>
+          <label
+            htmlFor="Description"
+            className="pt-4 block text-xl font-medium leading-6"
+          >
+            Description
+          </label>
+          <div className="mt-2 flex gap-x-6 gap-y-8">
+            <textarea
+              id="Description"
+              name="Description"
+              rows="7"
+              cols="100"
+              placeholder="How you describe your product?"
+              className="p-4 ring-2 rounded-md ring-color-secondary focus:ring-color-primary outline-none"
+              defaultValue={product.description}
+              required
+            />
+          </div>
+          <label
+            htmlFor="Inventory"
+            className="pt-4 block text-xl font-medium leading-6"
+          >
+            Inventory
+          </label>
+          <div className="mt-2 flex rounded-md shadow-sm ring-1 ring-inset focus-within:ring-2 focus-within:ring-inset sm:max-w-md">
+            <input
+              type="number"
+              name="Inventory"
+              id="Inventory"
+              className="block flex-1 border-0 bg-transparent py-2 px-4 ring-2 ring-color-secondary focus:ring-color-primary outline-none rounded-sm sm:text-sm sm:leading-6"
+              placeholder="How many do you have?"
+              min="0"
+              defaultValue={product.inventory}
+              required
+            />
+          </div>
+          <h2 className="pt-4 block text-xl font-medium leading-6">
+            Add photo
+          </h2>
+          <label 
+            htmlFor="Photo"
+            className="relative cursor-pointer rounded-md bg-white font-semibold focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2"
+          >
+            <span className="no-underline hover:underline">
+              Upload a photo
+            </span>
+          </label>
+          <input
+            id="Photo"
+            name="Photo"
+            type="file"
+            className="sr-only"
+            onChange={(e) => {
+              setPhotoObject(e.target.files[0]);
+              setPhoto(URL.createObjectURL(e.target.files[0]));
+            }}
+            required
+          />
           <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
-            <div className="text-center">
-              <img
-                className="mx-auto h-12 w-12 text-gray-300"
-                aria-hidden="true"
-                src="https://w7.pngwing.com/pngs/527/625/png-transparent-scalable-graphics-computer-icons-upload-uploading-cdr-angle-text-thumbnail.png"
-              />
-              <div className="mt-4 flex text-sm leading-6 text-gray-600">
-                <label
-                  htmlFor="file-upload"
-                  className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
-                >
-                  <span className="no-underline hover:underline text-blue-500">
-                    Upload a file
-                  </span>
-
-                  <input
-                    id="file-upload"
-                    name="file-upload"
-                    type="file"
-                    className="sr-only"
-                  />
-                </label>
-                <p className="pl-1">or drag and drop</p>
-              </div>
-              <p className="text-xs leading-5 text-gray-600">
-                PNG, JPG, GIF up to 10MB
-              </p>
+            <div className="flex flex-col items-center">
+              {
+                photo.length > 0 ? (
+                  <img src={photo}/>
+                ) : (
+                  <img src={product.image} />
+                )
+              }
             </div>
           </div>
-        </div>
-        <div className=" mx-16 flex-1 w-64 mt-6 flex items-center justify-end gap-x-6">
-          <button
-            type="button"
-            className="text-sm font-semibold leading-6 text-gray-900 transition duration-500 ease-in-out bg-blue-500 hover:bg-red-500 transform hover:-translate-y-1 hover:scale-110 "
-          >
-            Cancel
-          </button>
-          <button
-            type="submit"
-            className="font-bold text-l text-color-light py-3 px-5 rounded-xl bg-color-primary hover:bg-color-secondary transition duration-500 ease-in-out bg-blue-500 hover:bg-red-500 transform hover:-translate-y-1 hover:scale-110"
-          >
-            Save
-          </button>
-        </div>
+          <div className="flex justify-center mt-6 gap-x-6">
+            <NavLink
+              to={"/manage-product"}
+              type="button"
+              className="text-sm font-semibold leading-6 text-color-dark py-3 px-5 rounded-xl transition duration-500 ease-in-out bg-color-light hover:bg-color-primary transform hover:-translate-y-1 hover:scale-110"
+            >
+              Cancel
+            </NavLink>
+            <input
+              type="submit"
+              value={"Save"}
+              className="cursor-pointer font-bold text-l text-color-light py-3 px-5 rounded-xl bg-color-primary hover:bg-color-secondary transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110"
+            />
+          </div>
+        </form>
       </div>
     </div>
   );
