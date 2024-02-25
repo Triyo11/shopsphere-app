@@ -5,13 +5,13 @@ import Header from "../components/macro/Header";
 import EditProfileHeader from "../components/macro/EditProfileHeader";
 import EditPhotoButton from "../components/micro/EditPhotoButton";
 import { MyContext } from "../../utils/myContext";
+import Cookie from "js-cookie";
 
 import {
   getProfile,
   putPassword,
   putProfile,
 } from "../../utils/profileApiFetch";
-import { Cookie } from "@mui/icons-material";
 
 const shadowStyle = {
   transition: "transform 0.5s ease",
@@ -270,6 +270,7 @@ const EditProfile = () => {
                 {isPasswordEdit ? "Old password" : "Password"}
               </span>
               <input
+                disabled={!isPasswordEdit}
                 type={isPasswordEdit ? "text" : "password"}
                 placeholder={isPasswordEdit ? "old password" : "********"}
                 onChange={(e) => setPassword(e.target.value)}

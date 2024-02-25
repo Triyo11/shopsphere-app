@@ -1,30 +1,21 @@
+import { NavLink } from "react-router-dom";
+import { FaArrowLeft, FaPlus } from "react-icons/fa";
+
 const CartHeader = () => {
   return (
     <>
-    <div className="flex items-center  mt-[31px] mb-[75px]">
-      <button className="bg-color-primary hover:bg-color-secondary rounded-full ml-[30px] md:ml-[135px]">
-        <svg
-          width="49px"
-          height="49px"
-          viewBox="0 0 1024 1024"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            fill="#fff"
-            d="M224 480h640a32 32 0 1 1 0 64H224a32 32 0 0 1 0-64z"
-          />
-          <path
-            fill="#fff"
-            d="m237.248 512 265.408 265.344a32 32 0 0 1-45.312 45.312l-288-288a32 32 0 0 1 0-45.312l288-288a32 32 0 1 1 45.312 45.312L237.248 512z"
-          />
-        </svg>
-      </button>
-      <h2 className="font-bold text-3xl text-color-primary text-center w-full">
-        Your cart :
-      </h2>
-      <div className="w-[49px] mr-[30px] md:mr-[135px]"></div>
-    </div>
-  </>
+      <div className="bg-color-light sticky top-16 flex justify-between items-center w-full px-20 pt-4 pb-6">
+        <NavLink to={"/"} className="md:visible invisible">
+          <FaArrowLeft className="text-5xl fill-color-light bg-color-primary hover:bg-color-secondary rounded-full p-2" />
+        </NavLink>
+        <h2 className="font-bold md:text-3xl text-xl text-color-primary max-w-[50rem] text-center">
+          Your Cart:
+        </h2>
+        <NavLink to={"/"} className="invisible">
+          <FaPlus className="text-5xl fill-color-light bg-color-primary hover:bg-color-secondary rounded-full p-2" />
+        </NavLink>
+      </div>
+    </>
   );
 };
 export default CartHeader;

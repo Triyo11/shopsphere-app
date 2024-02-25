@@ -14,10 +14,6 @@ const Header = () => {
   const searchRef = useRef();
   const navigate = useNavigate();
   const { userData, setUserData } = useContext(MyContext);
-  const [name, setName] = useState("");
-  useEffect(() => {
-    setName(userData.name);
-  }, [userData]);
 
   const handleSearchProduct = (event) => {
     const searchKeyword = searchRef.current.value;
@@ -63,7 +59,7 @@ const Header = () => {
           }`}
         >
           <img
-            src="https://placehold.co/600x400"
+            src={userData.image}
             className="w-20 h-20 rounded-full object-cover"
           />
           <h2 className="text-lg font-semibold text-color-primary">

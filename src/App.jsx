@@ -21,6 +21,7 @@ import Cookies from "js-cookie";
 import { MyContext } from "./../utils/myContext";
 import { getProfile } from "../utils/profileApiFetch";
 import EditProductPage from "./pages/EditProductPage";
+import CategoryProduct from "./pages/CategoryProduct";
 
 function App() {
   const [cartData, setCartData] = useState([]);
@@ -88,7 +89,10 @@ function App() {
             />
             <Route path="/manage-product" element={<ManageProduct />} />
             <Route path="/products/:product_id" element={<DetailProduct />} />
-            <Route path="/category/:category_id" element={<NotFound />} />
+            <Route
+              path="/category/:category_id"
+              element={<CategoryProduct />}
+            />
             <Route path="/payment_success" element={<PaymentSuccess />} />
             <Route path="/order_history" element={<OrderHistory />} />
             <Route path="/*" element={<NotFound />} />
