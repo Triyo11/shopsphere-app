@@ -34,15 +34,13 @@ const SearchProduct = () => {
             <FaPlus className="text-5xl fill-color-light bg-color-primary hover:bg-color-secondary rounded-full p-2" />
           </NavLink>
         </div>
-        <div className="grid min-[1190px]:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 min-[359px]:grid-cols-2 grid-cols-1 md:gap-y-20 gap-y-10 md:gap-x-16 gap-x-7 mt-10">
-          {searchData.length === 0 ? (
-            <div className="border-2 border-primary mx-4 xl:mx-24 mt-8 rounded-xl min-h-[350px] pt-[10%] align-middle">
-              <p className="text-center font-bold text-7xl text-primary">
-                Product Not Found.
-              </p>
-            </div>
-          ) : (
-            searchData.map((product) => (
+        {searchData.length === 0 ? (
+          <h2 className="mt-16 font-semibold md:text-2xl text-xl text-color-primary max-w-[50rem] text-center">
+            Product not found.
+          </h2>
+        ) : (
+          <div className="grid min-[1190px]:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 min-[359px]:grid-cols-2 grid-cols-1 md:gap-y-20 gap-y-10 md:gap-x-16 gap-x-7 mt-10">
+            {searchData.map((product) => (
               <ProductCard
                 key={product.id}
                 id={product.id}
@@ -52,9 +50,9 @@ const SearchProduct = () => {
                 rating={product.rating}
                 image={product.image}
               />
-            ))
-          )}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
       <Footer />
     </>

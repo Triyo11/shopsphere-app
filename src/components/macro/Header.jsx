@@ -78,7 +78,7 @@ const Header = () => {
           <ListItem>
             <NavLink
               className="text-color-black text-xl font-bold hover:font-normal"
-              to="/cart"
+              to={userData.length == 0 ? `/login` : `/cart`}
             >
               Cart
             </NavLink>
@@ -86,7 +86,7 @@ const Header = () => {
           <ListItem>
             <NavLink
               className="text-color-black text-xl font-bold hover:font-normal"
-              to="/profile"
+              to={userData.length == 0 ? `/login` : `/profile`}
             >
               Profile
             </NavLink>

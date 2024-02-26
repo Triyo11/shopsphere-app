@@ -1,8 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { postProduct } from "../../../utils/productApiFetch";
 
 const AddProduct = () => {
+  const Navigate = useNavigate();
   const [photo, setPhoto] = useState([]);
   const [photoObject, setPhotoObject] = useState([]);
   const [urlPhoto, setUrlPhoto] = useState();
@@ -32,9 +34,10 @@ const AddProduct = () => {
   useEffect(() => {
     const data = {
       name: document.getElementById("ProductName").value,
-      price: document.getElementById("Price").value,
+      price: Number(document.getElementById("Price").value),
       description: document.getElementById("Description").value,
-      inventory: document.getElementById("Inventory").value,
+      inventory: Number(document.getElementById("Inventory").value),
+      category_id: Number(document.getElementById("Category").value),
       image: urlPhoto,
     };
     setDataAdded(data);
@@ -47,7 +50,15 @@ const AddProduct = () => {
     // fetch POST ADD PRODUCT
   };
 
-  console.log(dataAdded);
+  useEffect(() => {
+    const postProductData = async (dataAdded) => {
+      const response = await postProduct(dataAdded);
+      if (response.message === "Product has been created") {
+        Navigate("/manage-product");
+      }
+    };
+    postProductData(dataAdded);
+  }, [dataAdded]);
 
   return (
     <div className="font-poppins w-full">
@@ -115,9 +126,11 @@ const AddProduct = () => {
               <option disabled value="">
                 Choose category
               </option>
-              <option>Fashion</option>
-              <option>Electronic</option>
-              <option>Furniture</option>
+              <option value={1}>Fashion</option>
+              <option value={2}>Furniture</option>
+              <option value={3}>Electronic</option>
+              <option value={4}>Tools</option>
+              <option value={5}>Food</option>
             </select>
           </div>
           <label
@@ -157,13 +170,11 @@ const AddProduct = () => {
           <h2 className="pt-4 block text-xl font-medium leading-6 pb-2">
             Add photo
           </h2>
-          <label 
+          <label
             htmlFor="Photo"
             className="relative cursor-pointer rounded-md bg-white font-semibold focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2"
           >
-            <span className="no-underline hover:underline">
-              Upload a photo
-            </span>
+            <span className="no-underline hover:underline">Upload a photo</span>
           </label>
           <input
             id="Photo"
@@ -178,9 +189,7 @@ const AddProduct = () => {
           />
           <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
             <div className="flex flex-col items-center">
-            {
-              photo.length > 0 && <img src={photo} />
-            }
+              {photo.length > 0 && <img src={photo} />}
             </div>
           </div>
           <div className="flex justify-center mt-6 gap-x-6">

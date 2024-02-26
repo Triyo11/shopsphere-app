@@ -93,8 +93,8 @@ function App() {
               path="/category/:category_id"
               element={<CategoryProduct />}
             />
-            <Route path="/payment_success" element={<PaymentSuccess />} />
-            <Route path="/order_history" element={<OrderHistory />} />
+            <Route path="/payment-success" element={<PaymentSuccess />} />
+            <Route path="/order-history" element={<OrderHistory />} />
             <Route path="/*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

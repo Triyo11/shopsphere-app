@@ -1,24 +1,39 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-
-const product = {
-  id: 1,
-  name: "TV",
-  price: 1000,
-  description: "This is the best product of all time",
-  inventory: 100,
-  image: "http://res.cloudinary.com/dbqbijf9v/image/upload/v1708737690/shopsphere/qkydcfqtgz5ggd7abygt.png",
-  category: "Electronic",
-};
+import { getProductById, putProduct } from "../../../utils/productApiFetch";
 
 const EditProduct = () => {
-  const [photo, setPhoto] = useState(product.image);
+  const { product_id } = useParams();
+  const Navigate = useNavigate();
+
+  const [photo, setPhoto] = useState("");
   const [photoObject, setPhotoObject] = useState([]);
-  const [urlPhoto, setUrlPhoto] = useState();
-  const [dataChanged, setDataChanged] = useState({});
+  const [urlPhoto, setUrlPhoto] = useState("");
+  const [dataChanged, setDataChanged] = useState([]);
   const cloudName = "dbqbijf9v";
   const uploadPreset = "shopsphere";
+
+  // // fetch GET PRODUCT BY ID
+  const [product, setProduct] = useState([]);
+
+  useEffect(() => {
+    const fetchProductById = async () => {
+      const data = await getProductById(product_id);
+      let newData = {
+        ...data,
+        category: data.category[0],
+      };
+      delete newData.created_at;
+      delete newData.updated_at;
+      delete newData.rating;
+      delete newData.seller_id;
+
+      setProduct(newData);
+      setPhoto(newData.image);
+    };
+    fetchProductById();
+  }, [product_id]);
 
   const handleUploadPhoto = async () => {
     const data = new FormData();
@@ -39,26 +54,36 @@ const EditProduct = () => {
       });
   };
 
-  useEffect(() => {    
+  useEffect(() => {
     const data = {
       name: document.getElementById("ProductName").value,
-      price: document.getElementById("Price").value,
+      price: Number(document.getElementById("Price").value),
       description: document.getElementById("Description").value,
-      inventory: document.getElementById("Inventory").value,
+      inventory: Number(document.getElementById("Inventory").value),
+      category_id: Number(document.getElementById("Category").value),
       image: urlPhoto,
     };
     setDataChanged(data);
   }, [urlPhoto]);
 
+  console.log(dataChanged);
 
   const handleSaveProduct = async (e) => {
     e.preventDefault();
-    handleUploadPhoto();
-
-    // fetch POST EDIT PRODUCT
+    await handleUploadPhoto();
   };
 
-  console.log(dataChanged);
+  useEffect(() => {
+    const putProductData = async (dataChanged, product_id) => {
+      const response = await putProduct(dataChanged, product_id);
+      if (response.message === "product has been updated") {
+        Navigate("/manage-product");
+      }
+    };
+    putProductData(dataChanged, product_id);
+  }, [dataChanged]);
+
+  // console.log(dataChanged);
 
   return (
     <div className="font-poppins w-full">
@@ -128,9 +153,11 @@ const EditProduct = () => {
               <option disabled value="">
                 Choose category
               </option>
-              <option>Fashion</option>
-              <option>Electronic</option>
-              <option>Furniture</option>
+              <option value={1}>Fashion</option>
+              <option value={2}>Furniture</option>
+              <option value={3}>Electronic</option>
+              <option value={4}>Tools</option>
+              <option value={5}>Food</option>
             </select>
           </div>
           <label
@@ -172,13 +199,11 @@ const EditProduct = () => {
           <h2 className="pt-4 block text-xl font-medium leading-6">
             Add photo
           </h2>
-          <label 
+          <label
             htmlFor="Photo"
             className="relative cursor-pointer rounded-md bg-white font-semibold focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2"
           >
-            <span className="no-underline hover:underline">
-              Upload a photo
-            </span>
+            <span className="no-underline hover:underline">Upload a photo</span>
           </label>
           <input
             id="Photo"
@@ -193,13 +218,11 @@ const EditProduct = () => {
           />
           <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
             <div className="flex flex-col items-center">
-              {
-                photo.length > 0 ? (
-                  <img src={photo}/>
-                ) : (
-                  <img src={product.image} />
-                )
-              }
+              {photo.length > 0 ? (
+                <img src={photo} />
+              ) : (
+                <img src={product.image} />
+              )}
             </div>
           </div>
           <div className="flex justify-center mt-6 gap-x-6">

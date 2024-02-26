@@ -7,13 +7,15 @@ import { useEffect, useState } from "react";
 const CategoryEtalase = ({ categoryName, category_id }) => {
   // Mengambil data product berdasarkan category_id
   const [categoryProduct, setCategoryProduct] = useState([]);
+
   useEffect(() => {
     const fetchCategoryProduct = async () => {
       const data = await getProductByCategory(category_id);
       setCategoryProduct(data);
     };
     fetchCategoryProduct();
-  }, []);
+  }, [category_id]);
+
   return (
     <div className="font-poppins mt-24 bg-color-secondary max-h-max md:px-10 px-5 py-10 rounded-3xl">
       <div className="flex justify-between w-full px-3 pb-2">
