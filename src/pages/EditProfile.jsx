@@ -190,7 +190,7 @@ const EditProfile = () => {
             className="mt-4 bg-color-primary hover:bg-color-secondary text-color-light font-bold py-2 px-4 rounded"
           >
             {isSeller ? "Manage Store" : "Open Store"}
-          </NavLink>
+          </button>
         </div>
 
         {/* Bagian Sebelah Kanan */}
