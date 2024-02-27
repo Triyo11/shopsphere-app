@@ -1,9 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState, useContext } from "react";
 import Footer from "../components/macro/Footer";
 import Header from "../components/macro/Header";
 import EditProfileHeader from "../components/macro/EditProfileHeader";
-import EditPhotoButton from "../components/micro/EditPhotoButton";
 import { MyContext } from "../../utils/myContext";
 import Cookie from "js-cookie";
 
@@ -34,11 +34,15 @@ const EditProfile = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
+  const [image, setImage] = useState([]);
   const [imageUrl, setImageUrl] = useState("");
   // eslint-disable-next-line no-unused-vars
   const [message, setMessage] = useState("");
   const { setUserData } = useContext(MyContext);
   const [isSeller, setIsSeller] = useState(false);
+
+  const cloudName = "dbqbijf9v";
+  const uploadPreset = "shopsphere";
 
   // get profile data
   useEffect(() => {
@@ -51,6 +55,11 @@ const EditProfile = () => {
     };
     fetchProfileData();
   }, []);
+
+  // upload photo profile
+  useEffect(() => {
+    handleEditPhoto();
+  }, [image]);
 
   // State untuk menyimpan status mode edit
   const [isNameEdit, setIsNameEdit] = useState(false);
@@ -72,6 +81,25 @@ const EditProfile = () => {
       default:
         break;
     }
+  };
+
+  const handleEditPhoto = async () => {
+    const data = new FormData();
+    data.append("file", image);
+    data.append("upload_preset", uploadPreset);
+    data.append("folder", "shopsphere2");
+    await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
+      method: "POST",
+      body: data,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        const url = data.url;
+        setImageUrl(url);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   // Fungsi untuk menyimpan data yang telah diubah ke api
@@ -184,7 +212,23 @@ const EditProfile = () => {
               alt="Foto Profil"
             />
           </div>
-          <EditPhotoButton />
+          <label
+            htmlFor="PhotoProfile"
+            className="mt-5"
+          >
+            <span className="cursor-pointer mt-4 bg-color-primary hover:bg-color-secondary text-color-light font-bold py-2 px-4 rounded">
+              Edit Photo
+            </span>
+          </label>
+          <input
+            id="PhotoProfile"
+            name="PhotoProfile"
+            type="file"
+            className="sr-only"
+            onChange={(e) => {
+              setImage(e.target.files[0]);
+            }}
+          />
           <button
             onClick={isSeller ? handleManageStore : handleOpenStore}
             className="mt-4 bg-color-primary hover:bg-color-secondary text-color-light font-bold py-2 px-4 rounded"

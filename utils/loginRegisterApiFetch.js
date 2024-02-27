@@ -20,7 +20,7 @@ export const postLogin = async (email, password) => {
   }
 };
 
-export const postRegister = async (name, email, password) => {
+export const postRegister = async (name, email, password, city_id) => {
   try {
     const response = await fetch(`${url_app}/api/signup   `, {
       method: "POST",
@@ -31,6 +31,7 @@ export const postRegister = async (name, email, password) => {
         name: name,
         email: email,
         password: password,
+        city_id: city_id,
       }),
     });
 

@@ -10,6 +10,7 @@ import { getOrder } from "../../utils/orderApiFetch";
 const OrderPage = () => {
   //Consume ContextAPI
   const { orderData, setOrderData } = useContext(MyContext);
+  console.log(orderData);
 
   //Fungsi yang mengtriger getCart api
   useEffect(() => {

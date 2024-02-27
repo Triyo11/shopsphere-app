@@ -22,6 +22,12 @@ export default function FormRegister() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const [provinceOngkirData, setProvinceOngkirData] = useState([]);
+  const [cityOngkirData, setCityOngkirData] = useState([]);
+  const [selectedProvinceId, setSelectedProvinceId] = useState(5);
+  const [selectedCityId, setSelectedCityId] = useState(39);
+
   const navigate = useNavigate();
 
   const handleUsernameValidation = (event) => {
@@ -66,36 +72,6 @@ export default function FormRegister() {
     }
   };
 
-  const handleRegister = (event) => {
-    event.preventDefault();
-    // fetch POST REGISTER:
-    const fetchRegister = async (name, email, password) => {
-      const data = await postRegister(name, email, password);
-
-      if (data.errors?.email) {
-        setIsEmailAvailable(false);
-      } else {
-        setIsEmailAvailable(true);
-      }
-
-      if (data?.message === "User has been created") {
-        navigate("/login");
-      }
-    };
-    fetchRegister(name, email, password);
-  };
-
-
-  const [provinceOngkirData, setProvinceOngkirData] = useState([]);
-  const [cityOngkirData, setCityOngkirData] = useState([]);
- 
-
-  // State untuk menyimpan id provinsi dan city yang dipilih
-  const [selectedProvinceId, setSelectedProvinceId] = useState(5);
-  // eslint-disable-next-line no-unused-vars
-  const [selectedCityId, setSelectedCityId] = useState(39);
-  
-
   // Fungsi untuk menangani perubahan pilihan provinsi dan kota
   const handleProvinceChange = (event) => {
     setSelectedProvinceId(event.target.value);
@@ -103,8 +79,7 @@ export default function FormRegister() {
   const handleCityChange = (event) => {
     setSelectedCityId(event.target.value);
   };
- 
- 
+
   // get province list
   useEffect(() => {
     const fetchProvinceOngkir = async () => {
@@ -125,12 +100,29 @@ export default function FormRegister() {
     fetchCityOngkir();
   }, [selectedProvinceId]);
 
-  // get Cost list
-  
+  const handleRegister = (event) => {
+    event.preventDefault();
+    // fetch POST REGISTER:
+    const fetchRegister = async (name, email, password, selectedCityId) => {
+      const data = await postRegister(
+        name,
+        email,
+        password,
+        Number(selectedCityId)
+      );
 
-  // Menghitung total harga
- 
+      if (data.errors?.email) {
+        setIsEmailAvailable(false);
+      } else {
+        setIsEmailAvailable(true);
+      }
 
+      if (data?.message === "User has been created") {
+        navigate("/login");
+      }
+    };
+    fetchRegister(name, email, password, selectedCityId);
+  };
 
   return (
     <div className="w-11/12 sm:w-5/15 md:w-5/12  lg:w-3/12 text-sm glass">
@@ -235,49 +227,46 @@ export default function FormRegister() {
           </p>
         </div>
 
-
+        <div className="py-2 px-6 max-sm:w-full md:w-full lg:w-full">
+          <label htmlFor="" className="py-3 px-2 text-color-light text-sm">
+            Province
+          </label>
+          <select
+            onChange={handleProvinceChange}
+            id=""
+            className="block w-80 h-8 text-color-secondary bg-color-light pl-2 pr-2 rounded outline-none max-sm:w-full md:w-full lg:w-full"
+          >
+            <option disabled selected>
+              {" "}
+              Choose province
+            </option>
+            {provinceOngkirData.map((province, index) => (
+              <option key={index} value={province.province_id}>
+                {province.province}
+              </option>
+            ))}
+          </select>
+        </div>
 
         <div className="py-2 px-6 max-sm:w-full md:w-full lg:w-full">
-                <label htmlFor="" className="py-3 px-2 text-color-light text-sm">
-                  Province
-                </label>
-                <select
-                  onChange={handleProvinceChange}
-                  id=""
-                  className="block w-80 h-8 text-color-secondary bg-color-light pl-2 pr-2 rounded outline-none max-sm:w-full md:w-full lg:w-full"
-                >
-                  <option disabled selected >
-                    {" "}
-                    Choose province
-                  </option>
-                  {provinceOngkirData.map((province, index) => (
-                    <option key={index} value={province.province_id}>
-                      {province.province}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-
-              <div className="py-2 px-6 max-sm:w-full md:w-full lg:w-full">
-                <label htmlFor="" className="text-sm px-2 text-color-light py-3">
-                  City
-                </label>
-                <select
-                  onChange={handleCityChange}
-                  className="block w-80 h-8 text-color-secondary bg-color-light pl-2 pr-2 rounded outline-none max-sm:w-full md:w-full lg:w-full"
-                  id=""
-                >
-                  <option disabled selected>
-                    Choose City
-                  </option>
-                  {cityOngkirData.map((city, index) => (
-                    <option key={index} value={city.city_id}>
-                      {city.city_name}
-                    </option>
-                  ))}
-                </select>
-              </div>
+          <label htmlFor="" className="text-sm px-2 text-color-light py-3">
+            City
+          </label>
+          <select
+            onChange={handleCityChange}
+            className="block w-80 h-8 text-color-secondary bg-color-light pl-2 pr-2 rounded outline-none max-sm:w-full md:w-full lg:w-full"
+            id=""
+          >
+            <option disabled selected>
+              Choose City
+            </option>
+            {cityOngkirData.map((city, index) => (
+              <option key={index} value={city.city_id}>
+                {city.city_name}
+              </option>
+            ))}
+          </select>
+        </div>
 
         {/* <BottonRegister/> */}
         <div className="mx-5 my-7 py-2 text-center">
