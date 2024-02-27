@@ -35,14 +35,14 @@ const SearchProduct = () => {
           </NavLink>
         </div>
         <div className="grid min-[1190px]:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 min-[359px]:grid-cols-2 grid-cols-1 md:gap-y-20 gap-y-10 md:gap-x-16 gap-x-7 mt-10">
-          {searchData.length === 0 ? (
+          {searchData?.length === 0 ? (
             <div className="border-2 border-primary mx-4 xl:mx-24 mt-8 rounded-xl min-h-[350px] pt-[10%] align-middle">
               <p className="text-center font-bold text-7xl text-primary">
                 Product Not Found.
               </p>
             </div>
           ) : (
-            searchData.map((product) => (
+            searchData?.map((product) => (
               <ProductCard
                 key={product.id}
                 id={product.id}
