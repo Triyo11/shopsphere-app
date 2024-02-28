@@ -39,3 +39,19 @@ export const postOrder = async (checkedItems) => {
     console.error(error);
   }
 };
+
+export const getOrderBySeller = async (seller_id) => {
+  try {
+    const response = await fetch(`${url_app}/api/order/seller/${seller_id}`, {
+      method: "GET",
+      headers: {
+        Authorization: token,
+        "content-type": "application/json",
+      },
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};

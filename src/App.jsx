@@ -97,7 +97,10 @@ function App() {
               element={<CategoryProduct />}
             />
             <Route path="/payment-success" element={<PaymentSuccess />} />
-            <Route path="/order-history" element={<OrderHistory />} />
+            <Route
+              path="/order-history/:seller_id"
+              element={<OrderHistory />}
+            />
             <Route path="/*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
