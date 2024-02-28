@@ -15,11 +15,10 @@ const DetailProduct = () => {
   useEffect(() => {
     const fetchProductById = async () => {
       const data = await getProductById(product_id);
-      console.log(data);
       setProduct(data);
     };
     fetchProductById();
-  }, []);
+  }, [product_id]);
 
   return (
     <div className="font-poppins">

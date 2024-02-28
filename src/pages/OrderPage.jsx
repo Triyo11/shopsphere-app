@@ -10,7 +10,6 @@ import { getOrder } from "../../utils/orderApiFetch";
 const OrderPage = () => {
   //Consume ContextAPI
   const { orderData, setOrderData } = useContext(MyContext);
-  console.log(orderData);
 
   //Fungsi yang mengtriger getCart api
   useEffect(() => {
@@ -19,7 +18,7 @@ const OrderPage = () => {
       setOrderData(data);
     };
     fetchCart();
-  }, []);
+  }, [setOrderData]);
 
   return (
     <div className="flex flex-col min-h-screen">

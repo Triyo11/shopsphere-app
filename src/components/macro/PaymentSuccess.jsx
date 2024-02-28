@@ -3,36 +3,27 @@ import { useEffect, useState } from "react";
 import { Link, useParams, useRoutes, useSearchParams } from "react-router-dom";
 // import { FaCheck } from "react-icons/fa6";
 
-
-
 import Lottie from "lottie-react";
 import animationData from "../../assets/check.json";
-
+import { afterPayment } from "../../../utils/paymentApiFetch.js";
+import Cookies from "js-cookie";
 
 const PaymentSuccess = () => {
   const [search] = useSearchParams();
 
   const sessionId = search.get("session_id");
+  const order_id = Cookies.get("order_id");
 
   // Remove the quotes around sessionId in the next line
   // eslint-disable-next-line no-unused-vars
   const [dynamic, setDynamic] = useState(sessionId);
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        // Use dynamic directly in the URL
-        const response = await fetch(
-          `http://localhost:4200/api/afterPayment?session_id=${dynamic}`
-        );
-        const data = await response.json();
-        console.log(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    }
-
-    fetchData();
+    const fetchAfterPayment = async () => {
+      await afterPayment(dynamic, order_id);
+      Cookies.remove("order_id");
+    };
+    fetchAfterPayment();
   }, [dynamic]);
 
   return (
