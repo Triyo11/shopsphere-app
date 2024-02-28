@@ -16,7 +16,7 @@ const CategoryProduct = () => {
       setCategoryProductData(data);
     };
     fetchCategoryProduct();
-  }, []);
+  }, [category_id]);
   const keyword = categoryProductData[0]?.category[0];
 
   return (

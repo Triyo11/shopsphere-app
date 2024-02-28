@@ -19,7 +19,7 @@ const DetailProduct = () => {
       setProduct(data);
     };
     fetchProductById();
-  }, []);
+  }, [product_id]);
 
   return (
     <>
