@@ -23,6 +23,8 @@ import { getProfile } from "../utils/profileApiFetch";
 import EditProductPage from "./pages/EditProductPage";
 import CategoryProduct from "./pages/CategoryProduct";
 
+import Header from "./components/macro/Header";
+
 function App() {
   const [cartData, setCartData] = useState([]);
   const [addCart, setAddCart] = useState([]);

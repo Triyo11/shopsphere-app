@@ -37,8 +37,10 @@ const Header = () => {
     navigate("/");
   };
 
+  // TODO : tambah tombol order di sidebar
   return (
     <>
+      {/* Sidebar start */}
       <div
         className={`font-poppins bg-color-light fixed left-0 top-0 z-30 h-screen w-full max-w-[18rem] px-4 pb-4 pt-0 shadow-xl shadow-blue-gray-900 ${
           isSidebarActive ? "translate-x-0" : "-translate-x-full"
@@ -86,6 +88,14 @@ const Header = () => {
           <ListItem>
             <NavLink
               className="text-color-black text-xl font-bold hover:font-normal"
+              to={userData.length == 0 ? `/login` : `/cart`}
+            >
+              Order
+            </NavLink>
+          </ListItem>
+          <ListItem>
+            <NavLink
+              className="text-color-black text-xl font-bold hover:font-normal"
               to={userData.length == 0 ? `/login` : `/profile`}
             >
               Profile
@@ -112,7 +122,9 @@ const Header = () => {
           </button>
         )}
       </div>
-      <header className="bg-color-primary font-poppins sticky top-0 z-20 flex justify-between items-center py-4 md:px-20 px-10">
+      {/* Sidebar end */}
+
+      <header className="bg-color-primary font-poppins sticky top-0 z-30 flex justify-between items-center py-4 md:px-20 px-10">
         <button onClick={handleSidebar}>
           <RxHamburgerMenu className="text-color-light text-2xl active:animate-ping" />
         </button>
@@ -125,8 +137,8 @@ const Header = () => {
         </button>
       </header>
       <div
-        className={`font-poppins flex md:flex-row md:items-center flex-col md:gap-8 gap-2 items-center justify-center md:pt-2 pb-2 bg-color-secondary z-10 w-full md:h-30 h-28 fixed ${
-          isSearchInputActive ? "translate-y-0" : "-translate-y-full"
+        className={`font-poppins flex md:flex-row md:items-center flex-col md:gap-8 gap-2 items-center justify-center md:pt-2 pb-2 bg-color-secondary z-20 w-full md:h-30 h-28 fixed ${
+          isSearchInputActive ? "translate-y-0" : "-translate-y-96"
         } duration-300`}
       >
         <h2 className="font-bold text-xl text-color-light">SEARCH</h2>
