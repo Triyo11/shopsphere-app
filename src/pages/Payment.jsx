@@ -4,17 +4,23 @@ import { Link } from "react-router-dom";
 import { IoArrowBackCircle } from "react-icons/io5";
 import Header from "../components/macro/Header";
 import Footer from "../components/macro/Footer";
-import ProcessPayment from "../components/macro/ProcessPayment";
-import { useContext, useState, useEffect } from "react";
-import { MyContext } from "../../utils/myContext";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import Cookies from "js-cookie";
 
 import {
   getProvinceOngkir,
   getCityOngkir,
   getCostOngkir,
 } from "../../utils/rajaongkirApiFetch";
+import { getOrder } from "../../utils/orderApiFetch";
+import { postPayment } from "../../utils/paymentApiFetch";
 
 export default function Payment() {
+  const { order_id, order_total } = useParams();
+  Cookies.set("order_id", order_id);
+
+  const [linkPaymentProcess, setLinkPaymentProcess] = useState("");
   const [provinceOngkirData, setProvinceOngkirData] = useState([]);
   const [cityOngkirData, setCityOngkirData] = useState([]);
   const [costOngkirData, setCostOngkirData] = useState([]);
@@ -24,7 +30,7 @@ export default function Payment() {
   const [selectedProvinceId, setSelectedProvinceId] = useState(5);
   const [selectedCityId, setSelectedCityId] = useState(39);
   const [selectedExpedisi, setSelectedExpedisi] = useState("jne");
-  const [selectedService, setSelectedService] = useState(0);
+  const [selectedService, setSelectedService] = useState({});
 
   // Fungsi untuk menangani perubahan pilihan provinsi dan kota
   const handleProvinceChange = (event) => {
@@ -36,13 +42,19 @@ export default function Payment() {
   const handleExpedisiChange = (event) => {
     setSelectedExpedisi(event.target.value);
   };
-  const handleServiceChange = (event) => {
-    setSelectedService(event.target.value);
-  };
 
   // get order data:
-  const { orderData } = useContext(MyContext);
-  console.log(orderData);
+  const [orderData, setOrderData] = useState([]);
+  useEffect(() => {
+    const fetchCart = async () => {
+      const data = await getOrder();
+      const findOrder = data.orders.filter(
+        (item) => item.id === Number(order_id)
+      );
+      setOrderData(findOrder[0].product_by_seller);
+    };
+    fetchCart();
+  }, []);
 
   // get province list
   useEffect(() => {
@@ -75,14 +87,30 @@ export default function Payment() {
     fetchCostOngkir();
   }, [selectedCityId, selectedExpedisi, selectedService]);
 
-  console.log(costOngkirData);
+  //Penjumlahan shipping cost:
+  const handleServiceChange = (cost, index) => {
+    setSelectedService((prevCosts) => ({
+      ...prevCosts,
+      [index]: Number(cost),
+    }));
+  };
+  const totalCost = Object.values(selectedService).reduce((a, b) => a + b, 0);
 
   // Menghitung total harga
-  const subtotal = 45000;
+  const subtotal = Number(order_total);
   useEffect(() => {
-    const total = subtotal + Number(selectedService);
+    const total = subtotal + totalCost;
     setTotal(total);
   }, [selectedService]);
+
+  //Fungsi yang mengtriger getCart api
+  useEffect(() => {
+    const proceedPayment = async () => {
+      const data = await postPayment(order_id, totalCost);
+      setLinkPaymentProcess(data);
+    };
+    proceedPayment();
+  }, [totalCost]);
 
   return (
     <div>
@@ -167,77 +195,79 @@ export default function Payment() {
                   ))}
                 </select>
               </div>
-
-              <div className="py-3 mt-3 max-sm:w-full md:w-full lg:w-full border-2 border-solid border-color-secondary">
-                <div className="py-3 px-3 max-sm:w-full md:w-full lg:w-full">
-                  <h1 className="mb-3">Seller 1</h1>
-
-                  <div className="flex flex-wrap justify-between">
-                    <div className="flex gap-4 max-sm:gap-2">
-                      <div className="w-24 h-20 mb-2 mr-2 border-2 border-solid border-color-secondary">
-                        <img src="" alt="" />
+              {/* ee */}
+              {orderData.map((item, index) => (
+                <div
+                  key={index}
+                  className="py-3 mt-3 max-sm:w-full md:w-full lg:w-full border-2 border-solid border-color-secondary"
+                >
+                  <div className="py-3 px-3 max-sm:w-full md:w-full lg:w-full">
+                    <h1 className="mb-3">
+                      Products from Seller {item.seller_id}
+                    </h1>
+                    {item.items.map((item, index) => (
+                      <div
+                        key={index}
+                        className="flex flex-wrap justify-between"
+                      >
+                        <div className="flex gap-4 max-sm:gap-2">
+                          <div className="w-24 h-20 mb-2 mr-2 border-2 border-solid border-color-secondary">
+                            <img src="" alt="" />
+                          </div>
+                          <div>
+                            <p className="text-2xl ">{item.product.name}</p>
+                            <p>Qty: {item.quantity}</p>
+                            <p>Rp. {item.product.price}</p>
+                          </div>
+                        </div>
                       </div>
-                      <div>
-                        <p className="text-2xl ">Product 2</p>
-                        <p>Qty: 2</p>
-                        <p>Rp. 35000</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-wrap justify-between">
-                    <div className="flex gap-4 max-sm:gap-2">
-                      <div className="w-24 h-20 mb-2 mr-2 border-2 border-solid border-color-secondary">
-                        <img src="" alt="" />
-                      </div>
-                      <div>
-                        <p className="text-2xl">Product 2</p>
-                        <p>Qty: 2</p>
-                        <p>Rp. 35000</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="py-3 px-3 max-sm:w-full md:w-full lg:w-full">
-                  <label htmlFor="" className="text-2xl mb-3">
-                    Curier
-                  </label>
-                  <select
-                    onChange={handleExpedisiChange}
-                    className="block w-80 h-12 bg-color-accent1 pl-2 pr-2 rounded outline-none max-sm:w-full md:w-full lg:w-full"
-                    id=""
-                  >
-                    <option selected disabled>
-                      Choose Curier
-                    </option>
-                    <option value="jne">JNE</option>
-                    <option value="tiki">Tiki</option>
-                    <option value="pos">Pos</option>
-                  </select>
-                </div>
-
-                <div className="py-3 px-3 max-sm:w-full md:w-full lg:w-full">
-                  <label htmlFor="" className="text-2xl mb-3">
-                    Service
-                  </label>
-                  <select
-                    onChange={handleServiceChange}
-                    className="block w-80 h-12 bg-color-accent1 pl-2 pr-2 rounded outline-none max-sm:w-full md:w-full lg:w-full"
-                    id=""
-                  >
-                    <option selected disabled>
-                      Choose Service
-                    </option>
-                    {costOngkirData.map((service, index) => (
-                      <option key={index} value={service.cost[0].value}>
-                        {service.service}: Rp. {service.cost[0].value} -
-                        Estimate: {service.cost[0].etd} days
-                      </option>
                     ))}
-                  </select>
+                  </div>
+
+                  <div className="py-3 px-3 max-sm:w-full md:w-full lg:w-full">
+                    <label htmlFor="" className="text-2xl mb-3">
+                      Curier
+                    </label>
+                    <select
+                      onChange={handleExpedisiChange}
+                      className="block w-80 h-12 bg-color-accent1 pl-2 pr-2 rounded outline-none max-sm:w-full md:w-full lg:w-full"
+                      id=""
+                    >
+                      <option selected disabled>
+                        Choose Curier
+                      </option>
+                      <option value="jne">JNE</option>
+                      <option value="tiki">Tiki</option>
+                      <option value="pos">Pos</option>
+                    </select>
+                  </div>
+
+                  <div className="py-3 px-3 max-sm:w-full md:w-full lg:w-full">
+                    <label htmlFor="" className="text-2xl mb-3">
+                      Service
+                    </label>
+                    <select
+                      onChange={(event) =>
+                        handleServiceChange(event.target.value, index)
+                      }
+                      className="block w-80 h-12 bg-color-accent1 pl-2 pr-2 rounded outline-none max-sm:w-full md:w-full lg:w-full"
+                      id=""
+                    >
+                      <option selected disabled>
+                        Choose Service
+                      </option>
+                      {costOngkirData.map((service, index) => (
+                        <option key={index} value={service.cost[0].value}>
+                          {service.service}: Rp. {service.cost[0].value} -
+                          Estimate: {service.cost[0].etd} days
+                        </option>
+                      ))}
+                    </select>
+                  </div>
                 </div>
-              </div>
+              ))}
+
+              {/* e3e */}
             </form>
           </div>
 
@@ -250,9 +280,7 @@ export default function Payment() {
               </div>
               <div className="w-10/15 flex justify-between gap-24  mb-3 max-sm:gap-2 max-sm:w-full md:w-full lg:w-full">
                 <div>Shipping Cost:</div>
-                <div className="px-20 max-sm:px-5 lg:px-3">
-                  Rp {selectedService}
-                </div>
+                <div className="px-20 max-sm:px-5 lg:px-3">Rp {totalCost}</div>
               </div>
               <div className="border-b-color-secondary border-b-4 mb-3 max-sm:gap-2 max-sm:w-full md:w-full"></div>
               <div className="w-10/15 flex justify-between gap-24 ">
@@ -261,12 +289,17 @@ export default function Payment() {
               </div>
 
               <div className="flex justify-center mt-5">
-                <ProcessPayment />
+                <Link to={linkPaymentProcess.url}>
+                  <button className="bg-color-primary text-color-light px-4 py-3 mt-5 text-sm hover:bg-color-secondary hover:text-color-light rounded mx-auto my-10">
+                    Process Payment
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
         </div>
       </div>
+
       <div>
         <Footer />
       </div>

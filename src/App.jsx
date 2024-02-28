@@ -79,7 +79,10 @@ function App() {
             <Route path="/cart" element={<CartPage />} />
             <Route path="/checkout" element={<CheckoutPage />} />
             <Route path="/order" element={<OrderPage />} />
-            <Route path="/payment" element={<Payment />} />
+            <Route
+              path="/payment/:order_id/:order_total"
+              element={<Payment />}
+            />
             <Route path="/notfound" element={<NotFound />} />
             <Route path="/profile" element={<EditProfile />} />
             <Route path="/add-product" element={<AddProduct />} />
