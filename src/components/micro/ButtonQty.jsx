@@ -16,7 +16,7 @@ const ButtonQty = () => {
   };
 
   return (
-    <div className="flex items-center">
+    <div className="flex flex-col items-center">
       <p className="font-normal text-xl italic mb-[12px] mr-[10px]">
         Quantity:
       </p>

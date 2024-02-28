@@ -9,16 +9,12 @@ const DescriptionCard = ({ description }) => {
     width: "70%", // Memastikan bagian kanan tetap responsif
   };
 
-  const hoverStyle = {
-    transform: "translateY(-5px)",
-  };
-
   return (
     <div
-      className="justify-center w-full"
-      style={{ ...shadowStyle, ...hoverStyle }}
+      className="justify-center w-full hover:-translate-y-2"
+      style={{ ...shadowStyle }}
     >
-      <h3 className="font-bold text-color-primary text-2xl mb-[14px]">
+      <h3 className="font-bold text-color-primary md:text-2xl text-lg mb-[14px]">
         Description
       </h3>
       <p>{description}</p>
