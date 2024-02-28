@@ -3,19 +3,19 @@
 <br/>
 
 ## Description
-### Shosphere is multi-seller ecommerce website that provide products with various category from various seller. User as a buyer can search and buy anything in the website. As a seller, user can sell some their  products. Shopsphere was made by various stack such as Node JS, Prisma JS , MySql , React JS, Tailwind CSS. These app also consume third API from Raja Ongkir and Stripe as payment gateway. Beside of that, these app also use third party Ngrok to make localhost can be accessed by other device.
+### Shosphere is a multi-seller e-commerce website that provide products with various category from various seller. Users as buyers can search and buy anything on the website. As a seller, users can sell some of their  products. Shopsphere was made by various stacks such as Node JS, Prisma JS, MySql, React JS, and Tailwind CSS. This app also consumes a third API from Raja Ongkir and Stripe as a payment gateway. Beside of that, this app also use third-party Ngrok to make localhost can be accessed by another device.
 
 <br/>
 
 ## Structure Directory
 - ### Frontend/: Contains code for the User Interface (UI) that will be accessed via the browser using Ngrok
 
-- ### Backend/: Contains code for logic of application, interaction with the database, and provides data to the frontend.
+- ### Backend/: Contains code for logic of application, interaction with the database, and provides data to the front end.
 
 <br>
 <br>
 
-## How to run ?
+## How to run?
 
 ### Step 0  : Installation
 - ### Clone this repository ``` git clone https://github.com/Triyo11/shopsphere-app.git ```
@@ -26,60 +26,60 @@
 
 ### Step 1  :  Setting Server 
 - ### run ``` npm run dev ``` in your code
-- ### Turn on Ngrok to get access the server
-- ### Check server URL in chrome browser
-- ### Create URL that use in frontend (example: https://localhost:4200)
+- ### Turn on Ngrok to get access to the server
+- ### Check server URL in Chrome browser
+- ### Create a URL that uses in frontend (example: https://localhost:4200)
 - ### Add ```api``` in URL  to check server (https://localhost:4200/api)
-- ### Open the link in chrome browser
-- ### If window already open , click button 'visit link'
+- ### Open the link in the Chrome browser
+- ### If the window is already open, click the button 'visit link'
 - ### Now visit the url frontend again (https://localhost:4200)
-- ### Window will be displays the frontend of the website
+- ### Window will be displayed at the front end of the website
 
 <br/>
 
 ### Step 2 : User Account
-- ### To use features in our website , user should login by click 'Login' button in Sidebar
-- ### If doesn't have account, click 'Register' and window will change to Register page
-- ### Add some information in field of register form and clik ```submit``` button
-- ### Now you already register as ``` Buyer ``` is regular user that can buy anything in the website
-- ### Now back to Login page , and please login using email and password that already registered 
+- ### To use features on our website, the user should log in by clicking the 'Login' button on the Sidebar
+- ### If doesn't have an account, click 'Register' and a window will change to the Register page
+- ### Add some information in the field of the register form and click ```submit``` button
+- ### Now you already registered as a ``` Buyer ``` is a regular user that can buy anything on the website
+- ### Now back to Login page, and please log in using the email and password that are already registered 
   
 <br/>
 
 ### Step 3 : Features as a Buyer
-- ### If user Account that registered as Buyer, user can explore some features that Shopsphere provide to Buyer.
+- ### If the user Account that registered as a Buyer, the user can explore some features that Shopsphere provides to Buyer.
 - ### Include :
-    - ### Explore All Product in Home page
-    - ### Search product by category, name and other
-    - ### Buy some product and add to cart 
+    - ### Explore All Products on the Home page
+    - ### Search product by category, name, and other
+    - ### Buy some products and add them to the cart 
     - ### Visit Cart page (read and edit cart)
-    - ### Visit Order page (checkout process)
-    - ### Visit Payment page (payment process)
+    - ### Visit the Order page (checkout process)
+    - ### Visit the Payment page (payment process)
     - ### Manage Account
   
 <br/>
 
-### Step 4 : User Experience (Seller)
-- ### If user Account that registered as Seller, user can some feature that shopsphere provide to seller. Seller have permission like user but also have different action in manage product
+### Step 4 : Features as a Seller
+- ### If user Account that registered as a Seller, the user can some feature that Shopsphere provide to the seller. Sellers have permission like users but also have different actions in manage product
 - ### Include :
-    - ### Explore All Product in Home page 
-    - ### Manage their product (add product, update product and delete product) to sell
-    - ### Visit seller transaction page (that display user (buyer) order information )
-    - ### Buy some product and add to cart
+    - ### Explore All Products on the Home page 
+    - ### Manage their product (add product, update product, and delete product) to sell
+    - ### Visit the seller transaction page (that displays user (buyer) order information )
+    - ### Buy some products and add them to the cart
     - ### Visit Cart page 
-    - ### Visit order page that spesific to history order as buyer
+    - ### Visit the order page that is specific to the history order as the buyer
     - ### Also can do process payment 
     - ### Manage account
   
   <br/>
 
 ## Developer:
-- ### Shopsphere is develop by 5star team
+- ### Shopsphere is developed by 5star team
 
 <br/>
 
 ## API Reference:
-- ### Our team use third-party API to support process payment in Shopsphere
+- ### Our team uses third-party API to support process payment in Shopsphere
 - ### Include 
   - ### https://rajaongkir.com
   - ### https://stripe.com
