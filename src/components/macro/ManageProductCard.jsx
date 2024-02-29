@@ -11,7 +11,7 @@ const ManageProductCard = ({ name, price, image, id }) => {
             {name}
           </h2>
           <h2 className="font-semibold md:text-md text-sm text-color-black">
-            Rp {price}
+            ${price}
           </h2>
         </div>
         <NavLink to={`/edit-product/${id}`}>
