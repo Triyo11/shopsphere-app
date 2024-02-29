@@ -1,28 +1,27 @@
+import { useNavigate } from "react-router-dom";
+import { FaArrowLeft } from "react-icons/fa6";
+
 const DetailProductHeader = () => {
+  const navigate = useNavigate();
+
   return (
     <>
-      <div className="flex items-center  mt-[25px] mb-[25px]">
-        <button className="bg-color-primary hover:bg-color-secondary rounded-full ml-[135px]">
-          <svg
-            width="49px"
-            height="49px"
-            viewBox="0 0 1024 1024"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill="#fff"
-              d="M224 480h640a32 32 0 1 1 0 64H224a32 32 0 0 1 0-64z"
-            />
-            <path
-              fill="#fff"
-              d="m237.248 512 265.408 265.344a32 32 0 0 1-45.312 45.312l-288-288a32 32 0 0 1 0-45.312l288-288a32 32 0 1 1 45.312 45.312L237.248 512z"
-            />
-          </svg>
+      <div className="flex justify-between items-center sticky top-16 py-2 md:px-60 px-16 z-10 bg-color-light mt-[25px] mb-[25px]">
+        <button
+          onClick={() => navigate(-1)}
+          className="bg-color-primary hover:bg-color-secondary rounded-full"
+        >
+          <FaArrowLeft className="md:text-5xl text-3xl fill-color-light bg-color-primary hover:bg-color-secondary rounded-full md:p-2 p-1" />
         </button>
-        <h2 className="font-bold text-3xl text-color-primary text-center w-full">
+        <h2 className="font-bold md:text-3xl text-xl text-color-primary text-center w-full">
           Detail Product
         </h2>
-        <div className="w-[49px] mr-[135px]"></div>
+        <button
+          onClick={() => navigate(-1)}
+          className="bg-color-primary hover:bg-color-secondary rounded-full invisible"
+        >
+          <FaArrowLeft className="md:text-5xl text-3xl fill-color-light bg-color-primary hover:bg-color-secondary rounded-full md:p-2 p-1" />
+        </button>
       </div>
     </>
   );

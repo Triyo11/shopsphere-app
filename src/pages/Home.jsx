@@ -20,7 +20,7 @@ const Home = () => {
 
   if (isMediumScreen) {
     return (
-      <>
+      <div className="font-poppins">
         <Header />
         <div className="bg-color-light flex flex-col items-center w-full max-h-max pt-3 pb-24">
           <div className="menu-category">
@@ -42,11 +42,11 @@ const Home = () => {
           ))}
         </div>
         <Footer />
-      </>
+      </div>
     );
   } else {
     return (
-      <>
+      <div className="font-poppins">
         <Header />
         <div className="bg-color-light flex flex-col items-center w-full max-h-max pt-8">
           <Menu as="div" className="relative inline-block text-center">
@@ -98,7 +98,7 @@ const Home = () => {
           ))}
         </div>
         <Footer />
-      </>
+      </div>
     );
   }
 };

@@ -6,7 +6,7 @@ const ButtonCheckout = ({ onClick, successAdd }) => {
         {" "}
         {/* Menggunakan flexbox untuk membuat tombol menyesuaikan lebar layar */}
         <button
-          className="font-bold text-0.5xl text-color-light py-4 px-6 rounded-xl bg-color-primary hover:bg-color-secondary"
+          className="font-bold text-0.5xl text-color-light py-4 md:px-4 px-1 rounded-xl bg-color-primary hover:bg-color-secondary"
           onClick={onClick}
           style={{ width: "100%", maxWidth: "400px" }} // Menambahkan style untuk lebar maksimum dan responsif
         >

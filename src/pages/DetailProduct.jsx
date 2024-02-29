@@ -21,7 +21,7 @@ const DetailProduct = () => {
   }, [product_id]);
 
   return (
-    <>
+    <div className="font-poppins">
       <Header />
       <DetailProductHeader />
       <DetailCard
@@ -34,7 +34,7 @@ const DetailProduct = () => {
       />
       <DescriptionCard description={product.description} />
       <Footer />
-    </>
+    </div>
   );
 };
 
