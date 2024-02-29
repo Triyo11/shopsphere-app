@@ -59,7 +59,7 @@ export default function OrderHistory() {
 
       <div className=" py-10  ">
         <h1 className="text-color-secondary text-2xl mb-10 md:pt-5 pt-10 md:relative fixed top-8 z-10 left-0 w-full">
-          Order History
+          Seller Transactions
         </h1>
 
         <div className="overflow-scroll-x max-sm:mt-20 md:pt-4 pt-2">
