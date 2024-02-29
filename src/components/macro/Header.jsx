@@ -57,7 +57,7 @@ const Header = () => {
         </div>
         <div
           className={`flex flex-col justify-center items-center gap-3 ${
-            userData.length == 0 ? "hidden" : "block"
+            userData?.length == 0 ? "hidden" : "block"
           }`}
         >
           <img

@@ -58,7 +58,9 @@ const EditProfile = () => {
 
   // upload photo profile
   useEffect(() => {
-    handleEditPhoto();
+    if (imageUrl) {
+      handleEditPhoto();
+    }
   }, [image]);
 
   // State untuk menyimpan status mode edit
