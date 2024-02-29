@@ -76,3 +76,22 @@ export const postReceiptOrder = async (seller_id, order_id, receipt) => {
     console.error(error);
   }
 };
+
+export const putUpdateStatusOrder = async (order_id, status) => {
+  try {
+    const response = await fetch(`${url_app}/api/order/${order_id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        status: status,
+      }),
+    });
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};

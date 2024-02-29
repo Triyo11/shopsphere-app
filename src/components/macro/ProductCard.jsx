@@ -30,14 +30,20 @@ const ProductCard = ({ id, stock, name, price, rating, image }) => {
   return (
     <>
       <div className="bg-color-accent1 hover:shadow-2xl transition-all duration-300 flex flex-col md:w-48 w-36 h-full rounded-lg font-poppins">
-        <NavLink to={`/products/${id}`} className="cursor-pointer w-full h-full rounded-t-lg">
-          <img src={image} className="w-full h-48 rounded-t-lg object-cover hover:scale-105 ease-in-out transition-all duration-300" />
+        <NavLink
+          to={`/products/${id}`}
+          className="cursor-pointer w-full h-full rounded-t-lg"
+        >
+          <img
+            src={image}
+            className="w-full h-48 rounded-t-lg object-cover hover:scale-105 ease-in-out transition-all duration-300"
+          />
           <div className="md:p-4 p-2">
             <h2 className="font-bold md:text-md text-sm text-color-accent2 line-clamp-1">
               {name}
             </h2>
             <h2 className="font-semibold md:text-md text-sm text-color-black">
-              Rp {price}
+              $ {price}
             </h2>
             <div className="flex gap-x-1 md:mb-0 mb-4">
               <div className="text-color-accent2 font-semibold pt-[0.20rem]">

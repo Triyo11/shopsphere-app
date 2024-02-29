@@ -86,6 +86,29 @@ const Header = () => {
           <ListItem>
             <NavLink
               className="text-color-black text-xl font-bold hover:font-normal"
+              to={userData.length == 0 ? `/login` : `/order`}
+            >
+              My Orders
+            </NavLink>
+          </ListItem>
+          {userData.role_id === 2 && (
+            <ListItem>
+              <NavLink
+                className="text-color-black text-xl font-bold hover:font-normal"
+                to={
+                  userData.length == 0
+                    ? `/login`
+                    : `/order-history/${userData.id}`
+                }
+              >
+                Seller Transactions
+              </NavLink>
+            </ListItem>
+          )}
+
+          <ListItem>
+            <NavLink
+              className="text-color-black text-xl font-bold hover:font-normal"
               to={userData.length == 0 ? `/login` : `/profile`}
             >
               Profile

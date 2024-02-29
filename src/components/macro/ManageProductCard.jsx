@@ -12,7 +12,7 @@ const ManageProductCard = ({ name, price, rating, image, id }) => {
             {name}
           </h2>
           <h2 className="font-semibold md:text-md text-sm text-color-black">
-            Rp {price}
+            ${price}
           </h2>
           <div className="flex gap-x-1">
             <div className="text-color-accent2 font-semibold pt-[0.20rem]">

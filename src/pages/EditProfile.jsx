@@ -212,10 +212,7 @@ const EditProfile = () => {
               alt="Foto Profil"
             />
           </div>
-          <label
-            htmlFor="PhotoProfile"
-            className="mt-5"
-          >
+          <label htmlFor="PhotoProfile" className="mt-5">
             <span className="cursor-pointer mt-4 bg-color-primary hover:bg-color-secondary text-color-light font-bold py-2 px-4 rounded">
               Edit Photo
             </span>

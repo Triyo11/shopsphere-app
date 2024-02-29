@@ -56,6 +56,7 @@ export default function Payment() {
     fetchCart();
   }, []);
 
+  console.log(orderData);
   // get province list
   useEffect(() => {
     const fetchProvinceOngkir = async () => {
@@ -212,7 +213,11 @@ export default function Payment() {
                       >
                         <div className="flex gap-4 max-sm:gap-2">
                           <div className="w-24 h-20 mb-2 mr-2 border-2 border-solid border-color-secondary">
-                            <img src="" alt="" />
+                            <img
+                              className="w-full h-full"
+                              src={item.product.image}
+                              alt=""
+                            />
                           </div>
                           <div>
                             <p className="text-2xl ">{item.product.name}</p>
